@@ -1,0 +1,2 @@
+#define gweyl_VERSION_MAJOR @gweyl_VERSION_MAJOR@
+#define gweyl_VERSION_MINOR @gweyl_VERSION_MINOR@
