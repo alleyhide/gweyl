@@ -27,15 +27,16 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 # sub directories
 #include_directories("${PROJECT_SOURCE_DIR}/CartanMatrix")
-add_subdirectory(CartanMatrix)
 add_subdirectory(Cartan)
+add_subdirectory(CartanMatrix)
+add_subdirectory(Vector)
 add_subdirectory(Trace)
 
 
 
 add_library(gweyl SHARED "")
 
-target_link_libraries (gweyl Cartan CartanMatrix Trace)
+target_link_libraries (gweyl Cartan CartanMatrix Trace Vector)
 
 install (TARGETS gweyl LIBRARY DESTINATION lib)
 install (FILES "gweyl.hpp" DESTINATION include)

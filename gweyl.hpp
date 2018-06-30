@@ -25,50 +25,92 @@ using rational=boost::rational<int>;
 using matrix= boost::numeric::ublas::matrix<rational>;
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
+//
+//
+bool operator==(matrix &X, matrix &Y);
+bool operator!=(matrix &X, matrix &Y);
+
+bool operator==(NumberVector &X, NumberVector &Y);
+bool operator!=(NumberVector &X, NumberVector &Y);
+
 // gweyl treats simple Lie algebra types
 // in Cartan's classification
 enum class Type{
-    A,B,C,D,E,F,G,
+    invalid,A,B,C,D,E,F,G,
 };
 
 enum class Coordinate {
-    standard, fundamental,
+    simple, fundamental,
 };
 
 // trace
 void trace(std::string& msg);
 
+class Vector;
 
-
+//
+// class Cartan
+//  other names are RootSpace, DynkinDiagram, ..
+// fundamental class of gweyl
+//
 class Cartan
 {
 public:
     explicit Cartan(Type X, unsigned n);
-    Cartan() = delete;
-    ~Cartan();
+    Cartan();
+    virtual ~Cartan();
 
     matrix CartanMatrix();
     matrix InverseCartanMatrix();
-private:
-    Type X_;
-    unsigned rank_;
+
+    Vector SimpleRoot(unsigned i);
+    Vector FundamentalWeight(unsigned i);
+    Vector Zero();
+    Vector Rho();
+
+    Type type();
+    int rank();
+protected:
+    Type X_{Type::invalid};
+    unsigned rank_{0};
 };
 
+using RootSpace = Cartan;
+using DynkinDiagram = Cartan;
 
-matrix CartanMatrix(Cartan& t);
-matrix InverseCartanMatrix(Cartan& t);
+//
+// The followings are operators of the class Cartan
+//
 
+bool operator==(Cartan &X, Cartan &Y);
+bool operator!=(Cartan &X, Cartan &Y);
 
-class Vector
+class Vector : public RootSpace
 {
 public:    
-    explicit Vector(Cartan &V, NumberVector& v, Coordinate c);
-    explicit Vector(Type X, unsigned r, NumberVector& v, Coordinate c);
+    explicit Vector(Type X, NumberVector& v, Coordinate c);
+    void printf();
+
+    NumberVector simpleCoefficients();
+    NumberVector fundamentalCoefficients();
+
+    Vector operator-() const;
+    Vector operator+() const;
 private:
-    Cartan V_;
     NumberVector simpleCoefficients_;
     NumberVector fundamentalCoefficients_;
-    
+    matrix CartanMatrix_;
+    matrix InverseCartanMatrix_;
 };
+
+//
+// The followings are operators of the class Vector
+//
+
+bool operator==(Vector &X, Vector &Y);
+bool operator!=(Vector &X, Vector &Y);
+Vector operator+(Vector &X, Vector &Y);
+Vector operator-(Vector &X, Vector &Y);
+rational InnerProduct(Vector& v, Vector& w);
 
 }

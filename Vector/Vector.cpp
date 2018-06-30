@@ -25,5 +25,13 @@ void Vector::printf(){
     std::cout << "fundamental " << fundamentalCoefficients_ << std::endl;
 }
 
+NumberVector Vector::simpleCoefficients(){
+    return simpleCoefficients_;
+}
+
+NumberVector Vector::fundamentalCoefficients(){
+    return fundamentalCoefficients_;
+}
+
 
 }

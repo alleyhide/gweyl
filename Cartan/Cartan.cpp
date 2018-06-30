@@ -3,6 +3,8 @@
 
 namespace gweyl{
 
+
+
 std::function<void(int)> checkCartanTypeA = [](int n){
     if (n < 1){
         std::string msg{"Cartan classification error "};
@@ -110,8 +112,19 @@ Cartan::Cartan(Type X, unsigned n):
     return;
 }
 
+Cartan::Cartan(){
+}
+
 Cartan::~Cartan(){
 
+}
+
+Type Cartan::type(){
+    return X_;
+}
+
+int Cartan::rank(){
+    return rank_;
 }
 
 matrix Cartan::CartanMatrix(){
@@ -120,6 +133,30 @@ matrix Cartan::CartanMatrix(){
 
 matrix Cartan::InverseCartanMatrix(){
     return gweyl::InverseCartanMatrix(X_, rank_);
+}
+
+Vector Cartan::SimpleRoot(unsigned i){
+    NumberVector nv(rank_);
+    nv(i-1) = 1;
+    Vector v(X_, nv, Coordinate::simple);
+    
+    return v;
+}
+
+Vector Cartan::FundamentalWeight(unsigned i){
+    NumberVector nv(rank_);
+    nv(i-1) = 1;
+    Vector v(X_, nv, Coordinate::simple);
+    
+    return v;
+}
+
+bool operator==(Cartan &X, Cartan &Y){
+    return ((X.type() == Y.type()) && (X.rank() == Y.rank()));
+}
+
+bool operator!=(Cartan &X, Cartan &Y){
+    return !(X == Y);
 }
 
 }

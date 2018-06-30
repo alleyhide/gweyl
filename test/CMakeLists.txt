@@ -6,6 +6,9 @@ target_link_libraries(CartanMatrixTest gweyl)
 add_executable(InverseCartanMatrixTest InverseCartanMatrixTest.cpp)
 target_link_libraries(InverseCartanMatrixTest gweyl)
 
+add_executable(VectorTest VectorTest.cpp)
+target_link_libraries(VectorTest gweyl)
+
 
 
 #
