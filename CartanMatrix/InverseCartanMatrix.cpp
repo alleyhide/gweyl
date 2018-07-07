@@ -216,6 +216,9 @@ std::function<matrix(int)> InverseCartanMatrixG2 = [](int n){
     return P;
 };
 
+//
+// table of invers Cartan matirx functions
+//
 std::map<gweyl::Type, std::function<gweyl::matrix(int)>> InverseCartanMatrixFunctionTable{
     {Type::A, InverseCartanMatrixA},
     {Type::B, InverseCartanMatrixB},
