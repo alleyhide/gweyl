@@ -1,3 +1,12 @@
+/**
+ * @file   Vector.cpp
+ * @author ALIKAWA Hidehisa <alley_hide@ybb.ne.jp>
+ * @date   2018/07/07
+ * 
+ * @brief  class Vector
+ * 
+ * 
+ */
 #include "gweyl.hpp"
 #include "gweyl_private.hpp"
 

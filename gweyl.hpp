@@ -19,13 +19,29 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
+//
+// Alle the gweyl interfaces are in the namespace "gweyl"
+//
 namespace gweyl{
 
+//
+// rational numbers
+//
 using rational=boost::rational<int>;
+
+//
+// matrix of rational numbers
+//
 using matrix= boost::numeric::ublas::matrix<rational>;
+
+//
+// number vector 
+//
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
 //
+// we define equality of matrix and that of number vector,
+// because boost::ublas does not have the equality
 //
 bool operator==(matrix &X, matrix &Y);
 bool operator!=(matrix &X, matrix &Y);
@@ -33,17 +49,28 @@ bool operator!=(matrix &X, matrix &Y);
 bool operator==(NumberVector &X, NumberVector &Y);
 bool operator!=(NumberVector &X, NumberVector &Y);
 
+//
 // gweyl treats simple Lie algebra types
 // in Cartan's classification
+//
 enum class Type{
     invalid,A,B,C,D,E,F,G,
 };
 
+//
+// Coordinate system
+// There are at least two coordinates on root spaces.
+// One is simple roots, the other is fundamental weights.
+//
 enum class Coordinate {
     simple, fundamental,
 };
 
-// trace
+//
+// trace the message
+// @param[in] msg message
+// 
+//
 void trace(std::string& msg);
 
 class Vector;
@@ -60,31 +87,58 @@ public:
     Cartan();
     virtual ~Cartan();
 
+    //
+    // @return Cartan matrix
+    //
     matrix CartanMatrix();
+    
+    //
+    // @return invers of Cartan matrix
+    //
     matrix InverseCartanMatrix();
 
+    //
+    // @return the 'i'-th simple root
+    //
     Vector SimpleRoot(unsigned i);
+
+    //
+    // @return the 'i'-th fundamental weight
+    //
     Vector FundamentalWeight(unsigned i);
     Vector Zero();
     Vector Rho();
 
+    //
+    // getter of X_
+    // @return type
+    //
     Type type();
+    //
+    // getter of rank_
+    // @return n
+    //
     int rank();
 protected:
     Type X_{Type::invalid};
     unsigned rank_{0};
 };
 
+//
+// In gweyl, the class RootSpace, DynkinDiagram and the class Cartan are same
+//
 using RootSpace = Cartan;
 using DynkinDiagram = Cartan;
 
 //
 // The followings are operators of the class Cartan
 //
-
 bool operator==(Cartan &X, Cartan &Y);
 bool operator!=(Cartan &X, Cartan &Y);
 
+//
+// Vector in root space
+//
 class Vector : public RootSpace
 {
 public:    
@@ -97,8 +151,8 @@ public:
     Vector operator-() const;
     Vector operator+() const;
 private:
-    NumberVector simpleCoefficients_;
-    NumberVector fundamentalCoefficients_;
+    NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
+    NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
     matrix CartanMatrix_;
     matrix InverseCartanMatrix_;
 };

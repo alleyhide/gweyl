@@ -1,7 +1,19 @@
+/**
+ * @file   CartanMatrix.cpp
+ * @author ALIKAWA Hidehisa <alley_hide@ybb.ne.jp>
+ * @date   2018/04/30
+ * 
+ * @brief  CartanMatrix
+ * 
+ * 
+ */
 #include "gweyl.hpp"
 
 namespace gweyl{
 
+//
+// Cartan matrix of type A
+//
 std::function<matrix(int)> CartanMatrixA = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -17,6 +29,10 @@ std::function<matrix(int)> CartanMatrixA = [](int n){
     
     return A;
 };
+
+//
+// Cartan matrix of type B
+//
 
 std::function<matrix(int)> CartanMatrixB = [](int n){
     gweyl::matrix A;
@@ -37,6 +53,9 @@ std::function<matrix(int)> CartanMatrixB = [](int n){
     return A;
 };
 
+//
+// Cartan matrix of type C
+//
 std::function<matrix(int)> CartanMatrixC = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -55,6 +74,9 @@ std::function<matrix(int)> CartanMatrixC = [](int n){
     return A;
 };
 
+//
+// Cartan matrix of type D
+//
 std::function<matrix(int)> CartanMatrixD = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -76,6 +98,9 @@ std::function<matrix(int)> CartanMatrixD = [](int n){
     return A;
 };
 
+//
+// Cartan matrix of type E
+//
 std::function<matrix(int)> CartanMatrixE = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -102,6 +127,9 @@ std::function<matrix(int)> CartanMatrixE = [](int n){
     return A;
 };
 
+//
+// Cartan matrix of type F
+//
 std::function<matrix(int)> CartanMatrixF = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -120,6 +148,9 @@ std::function<matrix(int)> CartanMatrixF = [](int n){
     return A;
 };
 
+//
+// Cartan matrix of type G
+//
 std::function<matrix(int)> CartanMatrixG = [](int n){
     gweyl::matrix A;
     A.resize(n,n);
@@ -132,6 +163,9 @@ std::function<matrix(int)> CartanMatrixG = [](int n){
     return A;
 };
 
+//
+// table of CartanMatrix functions
+//
 std::map<gweyl::Type, std::function<gweyl::matrix(int)>> CartanMatrixFunctionTable{
     {Type::A, CartanMatrixA},
     {Type::B, CartanMatrixB},
