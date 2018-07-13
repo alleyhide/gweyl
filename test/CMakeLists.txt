@@ -1,3 +1,9 @@
+#
+# @file CMakeLists.txt for gweyl test
+# @author ALIKAWA Hidehisa <alleyhide@gmail.com>
+#
+
+
 link_directories(../gweyl)
 
 add_executable(CartanMatrixTest CartanMatrixTest.cpp)
