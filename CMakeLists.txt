@@ -1,5 +1,6 @@
 #
-# CMakeLists.txt for gweyl
+# @file CMakeLists.txt for gweyl
+# @author ALIKAWA Hidehisa <alleyhide@gmail.com>
 #
 
 cmake_minimum_required (VERSION 3.7.2)

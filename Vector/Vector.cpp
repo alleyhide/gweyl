@@ -1,6 +1,6 @@
 /**
  * @file   Vector.cpp
- * @author ALIKAWA Hidehisa <alley_hide@ybb.ne.jp>
+ * @author ALIKAWA Hidehisa <alleyhide@gmail.com>
  * @date   2018/07/07
  * 
  * @brief  class Vector

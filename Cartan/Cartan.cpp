@@ -1,6 +1,6 @@
 /**
  * @file   Cartan.cpp
- * @author ALIKAWA Hidehisa <alley_hide@ybb.ne.jp>
+ * @author ALIKAWA Hidehisa <alleyhide@gmail.com>
  * @date   2018/04/30
  * 
  * @brief  class Cartan
