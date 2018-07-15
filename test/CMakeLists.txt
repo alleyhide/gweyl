@@ -6,12 +6,28 @@
 
 link_directories(../gweyl)
 
+#
+# test for class Cartan
+# tests are in the source
+#
+add_executable(CartanTest CartanTest.cpp)
+target_link_libraries(CartanTest gweyl)
+
+#
+# test for class CartanMatrix
+#
 add_executable(CartanMatrixTest CartanMatrixTest.cpp)
 target_link_libraries(CartanMatrixTest gweyl)
 
+#
+# test for class inverse matrix of CartanMatrix
+#
 add_executable(InverseCartanMatrixTest InverseCartanMatrixTest.cpp)
 target_link_libraries(InverseCartanMatrixTest gweyl)
 
+#
+# test for class Vector
+#
 add_executable(VectorTest VectorTest.cpp)
 target_link_libraries(VectorTest gweyl)
 
@@ -21,6 +37,24 @@ target_link_libraries(VectorTest gweyl)
 # test
 #
 enable_testing()
+
+
+#
+# tests for Cartan
+#
+add_test(testCartan001 CartanTest)
+set_tests_properties(testCartan001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+
+#
+# tests for Vector
+#
+add_test(testVector001 VectorTest)
+set_tests_properties(testVector001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+
+
+
+
+
 
 #
 # test for Cartan Matrix

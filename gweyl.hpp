@@ -20,7 +20,7 @@
 #include <boost/numeric/ublas/io.hpp>
 
 //
-// Alle the gweyl interfaces are in the namespace "gweyl"
+// namespace "gweyl"
 //
 namespace gweyl{
 
@@ -35,7 +35,8 @@ using rational=boost::rational<int>;
 using matrix= boost::numeric::ublas::matrix<rational>;
 
 //
-// number vector 
+// number vector
+// this is vector of mathematics (primitive linear algera)
 //
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
@@ -43,11 +44,11 @@ using NumberVector=boost::numeric::ublas::vector<rational>;
 // we define equality of matrix and that of number vector,
 // because boost::ublas does not have the equality
 //
-bool operator==(matrix &X, matrix &Y);
-bool operator!=(matrix &X, matrix &Y);
+bool operator==(const matrix &X, const matrix &Y);
+bool operator!=(const matrix &X, const matrix &Y);
 
-bool operator==(NumberVector &X, NumberVector &Y);
-bool operator!=(NumberVector &X, NumberVector &Y);
+bool operator==(const NumberVector &v, const NumberVector &w);
+bool operator!=(const NumberVector &v, const NumberVector &w);
 
 //
 // gweyl treats simple Lie algebra types
@@ -60,7 +61,7 @@ enum class Type{
 //
 // Coordinate system
 // There are at least two coordinates on root spaces.
-// One is simple roots, the other is fundamental weights.
+// One is simple roots, and the other is fundamental weights.
 //
 enum class Coordinate {
     simple, fundamental,
@@ -114,11 +115,14 @@ public:
     // @return type
     //
     Type type();
+    Type type() const;
+    
     //
     // getter of rank_
     // @return n
     //
     int rank();
+    int rank() const;
 protected:
     Type X_{Type::invalid};
     unsigned rank_{0};
@@ -133,8 +137,8 @@ using DynkinDiagram = Cartan;
 //
 // The followings are operators of the class Cartan
 //
-bool operator==(Cartan &X, Cartan &Y);
-bool operator!=(Cartan &X, Cartan &Y);
+bool operator==(const Cartan &X, const Cartan &Y);
+bool operator!=(const Cartan &X, const Cartan &Y);
 
 //
 // Vector in root space
@@ -146,7 +150,9 @@ public:
     void printf();
 
     NumberVector simpleCoefficients();
+    NumberVector simpleCoefficients() const;
     NumberVector fundamentalCoefficients();
+    NumberVector fundamentalCoefficients() const;
 
     Vector operator-() const;
     Vector operator+() const;
@@ -161,10 +167,10 @@ private:
 // The followings are operators of the class Vector
 //
 
-bool operator==(Vector &X, Vector &Y);
-bool operator!=(Vector &X, Vector &Y);
-Vector operator+(Vector &X, Vector &Y);
-Vector operator-(Vector &X, Vector &Y);
+bool operator==(const Vector &v, const Vector &w);
+bool operator!=(const Vector &v, const Vector &w);
+Vector operator+(const Vector &v, const Vector &w);
+Vector operator-(const Vector &v, const Vector &w);
 rational InnerProduct(Vector& v, Vector& w);
 
 }

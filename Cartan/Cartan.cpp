@@ -157,12 +157,20 @@ Cartan::~Cartan(){
 
 }
 
-Type Cartan::type(){
+Type Cartan::type() const {
     return X_;
 }
 
-int Cartan::rank(){
+Type Cartan::type(){
+    return type();
+}
+
+int Cartan::rank() const {
     return rank_;
+}
+
+int Cartan::rank(){
+    return rank();
 }
 
 matrix Cartan::CartanMatrix(){
@@ -189,11 +197,11 @@ Vector Cartan::FundamentalWeight(unsigned i){
     return v;
 }
 
-bool operator==(Cartan &X, Cartan &Y){
+bool operator==(const Cartan &X, const Cartan &Y){
     return ((X.type() == Y.type()) && (X.rank() == Y.rank()));
 }
 
-bool operator!=(Cartan &X, Cartan &Y){
+bool operator!=(const Cartan &X, const Cartan &Y){
     return !(X == Y);
 }
 

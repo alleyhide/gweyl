@@ -13,6 +13,48 @@
 
 namespace gweyl{
 
+bool operator==(const matrix &X, const matrix &Y){
+    return !(X != Y);
+}
+
+
+bool operator!=(const matrix &X, const matrix &Y){
+    if (X.size1() != Y.size1()){
+        return true;
+    }
+
+    if (X.size2() != Y.size2()){
+        return true;
+    }
+
+    for (unsigned i=0; i<X.size1(); ++i){
+        for (unsigned j=0; j<X.size2(); ++j){
+            if (X(i, j) != Y(i, j)){
+                return true;
+            }
+        }
+    }
+    
+    return false;        
+}
+
+bool operator==(const NumberVector &v, const NumberVector &w){
+    return !(v != w);
+}
+
+bool operator!=(const NumberVector &v, const NumberVector &w){
+    if (v.size() != w.size()){
+        return true;
+    }
+
+    for (unsigned i=0; i<v.size(); ++i){
+        if (v(i) != w(i)){
+            return true;
+        }
+    }
+    return false;
+}
+
 Vector::Vector(Type X, NumberVector& v, Coordinate c){
     X_ = X;
     rank_ = v.size();
@@ -34,12 +76,37 @@ void Vector::printf(){
     std::cout << "fundamental " << fundamentalCoefficients_ << std::endl;
 }
 
-NumberVector Vector::simpleCoefficients(){
+NumberVector Vector::simpleCoefficients() const{
     return simpleCoefficients_;
 }
 
-NumberVector Vector::fundamentalCoefficients(){
+NumberVector Vector::simpleCoefficients(){
+    return simpleCoefficients();
+}
+
+NumberVector Vector::fundamentalCoefficients() const{
     return fundamentalCoefficients_;
+}
+
+NumberVector Vector::fundamentalCoefficients(){
+    return fundamentalCoefficients();
+}
+
+bool operator==(const Vector &v, const Vector &w){
+    if ((RootSpace&)v != (RootSpace&)w){
+        return false;
+    }
+
+    if (v.fundamentalCoefficients() != w.fundamentalCoefficients()){
+        return false;
+    }
+
+    return true;
+}
+
+
+bool operator!=(const Vector &v, const Vector &w){
+    return !(v == w);            
 }
 
 
