@@ -13,7 +13,8 @@ int main(int argc, char** argv){
         nv4(0)=-1;
         
         // NumberVector ==
-        if (nv1 == nv3){
+        //if (nv1 == nv3){
+        if (gweyl::equals(nv1, nv3)){
             ;
         }else {
             std::string msg("NumberVector test != ");
@@ -22,7 +23,8 @@ int main(int argc, char** argv){
         }
         
         // NumberVector !=
-        if (nv1 != nv2){
+        //if (nv1 != nv2){
+        if (!(gweyl::equals(nv1, nv2))){
             ;
         }else {
             std::string msg("NumberVector test != ");
@@ -30,13 +32,50 @@ int main(int argc, char** argv){
             throw e;
         }
 
-        if (nv1 != nv4){
+        gweyl::Vector v1(gweyl::Type::A, nv1, gweyl::Coordinate::simple);
+        gweyl::Vector v2(gweyl::Type::A, nv2, gweyl::Coordinate::simple);
+        gweyl::Vector v3(gweyl::Type::A, nv3, gweyl::Coordinate::simple);
+        gweyl::Vector v4(gweyl::Type::A, nv4, gweyl::Coordinate::simple);
+
+
+        // Vector !=
+        if (v1 != v4){
             ;
         }else {
-            std::string msg("NumberVector test != ");
+            std::string msg("Vector test != ");
             std::runtime_error e(msg);
             throw e;
         }
+
+
+
+        // Vector ==
+        if (v1 == v3){
+            ;
+        }else {
+            std::string msg("Vector test != ");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        
+        // Vector !=
+        if (v1 != v2){
+        
+            ;
+        }else {
+            std::string msg("Vector test != ");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        if (v1 != v4){
+            ;
+        }else {
+            std::string msg("Vector test != ");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        
         
         
     }catch (std::exception &e){

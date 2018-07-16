@@ -13,6 +13,7 @@
 
 namespace gweyl{
 
+#if 0
 bool operator==(const matrix &X, const matrix &Y){
     return !(X != Y);
 }
@@ -54,6 +55,41 @@ bool operator!=(const NumberVector &v, const NumberVector &w){
     }
     return false;
 }
+#endif
+
+bool equals(const matrix &X, const matrix &Y){
+    if (X.size1() != Y.size1()){
+        return false;
+    }
+
+    if (X.size2() != Y.size2()){
+        return false;
+    }
+
+    for (unsigned i=0; i<X.size1(); ++i){
+        for (unsigned j=0; j<X.size2(); ++j){
+            if (X(i, j) != Y(i, j)){
+                return false;
+            }
+        }
+    }
+    
+    return true;        
+}
+
+bool equals(const NumberVector &v, const NumberVector &w){
+    if (v.size() != w.size()){
+        return false;
+    }
+
+    for (unsigned i=0; i<v.size(); ++i){
+        if (v(i) != w(i)){
+            return false;
+        }
+    }
+    return true;
+}
+
 
 Vector::Vector(Type X, NumberVector& v, Coordinate c){
     X_ = X;
@@ -97,7 +133,8 @@ bool operator==(const Vector &v, const Vector &w){
         return false;
     }
 
-    if (v.fundamentalCoefficients() != w.fundamentalCoefficients()){
+    //if (v.fundamentalCoefficients() != w.fundamentalCoefficients()){
+    if (!equals(v.fundamentalCoefficients(), w.fundamentalCoefficients())){
         return false;
     }
 

@@ -32,7 +32,7 @@ using rational=boost::rational<int>;
 //
 // matrix of rational numbers
 //
-using matrix= boost::numeric::ublas::matrix<rational>;
+using matrix=boost::numeric::ublas::matrix<rational>;
 
 //
 // number vector
@@ -40,15 +40,31 @@ using matrix= boost::numeric::ublas::matrix<rational>;
 //
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
+#if 0
+class NumberVector : public boost::numeric::ublas::vector<rational>
+{
+public:
+    NumberVector(){}
+    explicit NumberVector(int){
+    }
+    ~NumberVector(){}
+    //bool operator==(const NumberVector &v);
+    //bool operator!=(const NumberVector &v);
+};
+#endif
+
 //
 // we define equality of matrix and that of number vector,
 // because boost::ublas does not have the equality
 //
-bool operator==(const matrix &X, const matrix &Y);
-bool operator!=(const matrix &X, const matrix &Y);
+//bool operator==(const matrix &X, const matrix &Y);
+//bool operator!=(const matrix &X, const matrix &Y);
+bool equals(const matrix &X, const matrix &Y);
 
-bool operator==(const NumberVector &v, const NumberVector &w);
-bool operator!=(const NumberVector &v, const NumberVector &w);
+//bool operator==(const NumberVector &v, const NumberVector &w);
+//bool operator!=(const NumberVector &v, const NumberVector &w);
+bool equals(const NumberVector &v, const NumberVector &w);
+
 
 //
 // gweyl treats simple Lie algebra types
