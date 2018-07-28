@@ -40,6 +40,10 @@ using matrix=boost::numeric::ublas::matrix<rational>;
 //
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
+
+bool equal(const matrix &X, const matrix &Y);
+bool equal(const NumberVector &v, const NumberVector &w);
+
 //
 // gweyl treats simple Lie algebra types
 // in Cartan's classification
@@ -146,8 +150,12 @@ public:
     NumberVector fundamentalCoefficients() const;
 
     Type type();
+    Type type() const;
     unsigned rank();
-    
+    unsigned rank() const;
+
+    bool operator==(const Vector& rhs);
+    bool operator!=(const Vector& rhs);
     //Vector operator-=(const Vector v);
     //Vector operator+=(const Vector v);
     //Vector& operator*=(rational r);
@@ -161,7 +169,7 @@ private:
 // The followings are operators of the class Vector
 //
 
-bool equal(const Vector &v, const Vector &w);
+//bool equal(const Vector &v, const Vector &w);
 //bool operator==(const Vector &v, const Vector &w);
 //bool operator!=(const Vector &v, const Vector &w);
 //Vector operator+(const Vector &v, const Vector &w);

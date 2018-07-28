@@ -22,9 +22,6 @@ namespace gweyl{
 Vector::Vector(Type X, NumberVector& v, Coordinate c){
 
     RootSpace V(X, v.size());
-    
-    //X_ = X;
-    //rank_ = v.size();
 
     space_ = V;
     

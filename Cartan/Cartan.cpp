@@ -162,7 +162,7 @@ Type Cartan::type() const {
 }
 
 Type Cartan::type(){
-    return type();
+    return X_;
 }
 
 unsigned Cartan::rank() const {
@@ -170,7 +170,7 @@ unsigned Cartan::rank() const {
 }
 
 unsigned Cartan::rank(){
-    return rank();
+    return rank_;
 }
 
 matrix Cartan::CartanMatrix(){

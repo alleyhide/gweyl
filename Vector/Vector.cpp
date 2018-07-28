@@ -50,51 +50,38 @@ Type Vector::type(){
 }
 
 
+Type Vector::type() const{
+    return space_.type();
+}
+
+
 unsigned Vector::rank(){
     return space_.rank();
 }
 
-#if 0
-bool operator==(const Vector &v, const Vector &w){
-    if ((RootSpace&)v != (RootSpace&)w){
+unsigned Vector::rank() const{
+    return space_.rank();
+}
+
+bool Vector::operator==(const Vector& rhs){
+    if (this->type() != rhs.type()){
         return false;
     }
 
-    //if (v.fundamentalCoefficients() != w.fundamentalCoefficients()){
-    if (!equals(v.fundamentalCoefficients(), w.fundamentalCoefficients())){
+    if (rank() != rhs.rank()){
+        return false;
+    }
+
+    if (!equal(fundamentalCoefficients_, rhs.fundamentalCoefficients())){
         return false;
     }
 
     return true;
 }
 
-
-bool operator!=(const Vector &v, const Vector &w){
-    return !(v == w);            
+bool Vector::operator!=(const Vector& rhs){
+    return !(*this == rhs);
 }
 
-
-bool equal(const Vector &v, const Vector &w){
-    if ((RootSpace&)v != (RootSpace&)w){
-        return false;
-    }
-
-    //if (v.fundamentalCoefficients() != w.fundamentalCoefficients()){
-    //if (!equal(v.fundamentalCoefficients(), w.fundamentalCoefficients())){
-    //return false;
-    //}
-
-
-    NumberVector v1 = v.fundamentalCoefficients();
-    NumberVector w1 = w.fundamentalCoefficients();
-    if (!(gweyl::equal(v1, w1))){
-
-        return false;
-    }
-
-    
-    return true;
-}
-#endif
 }
 
