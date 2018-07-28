@@ -205,6 +205,12 @@ bool Cartan::operator!=(const Cartan &rhs){
     return !(*this == rhs);
 }
 
+Cartan& Cartan::operator=(const Cartan& rhs){
+    X_ = rhs.type();
+    rank_ = rhs.rank();
+    return *this;
+}
+
 #if 0
 bool operator==(const Cartan &X, const Cartan &Y){
     return ((X.type() == Y.type()) && (X.rank() == Y.rank()));

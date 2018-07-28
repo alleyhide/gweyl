@@ -116,6 +116,8 @@ public:
 
     bool operator==(const Cartan& rhs);
     bool operator!=(const Cartan& rhs);
+
+    Cartan& operator=(const Cartan& rhs);
 protected:
     Type X_{Type::invalid};
     unsigned rank_{0};
@@ -128,15 +130,9 @@ using RootSpace = Cartan;
 using DynkinDiagram = Cartan;
 
 //
-// The followings are operators of the class Cartan
-//
-bool operator==(const Cartan &X, const Cartan &Y);
-bool operator!=(const Cartan &X, const Cartan &Y);
-
-//
 // Vector in root space
 //
-class Vector : public RootSpace
+class Vector 
 {
 public:    
     explicit Vector(Type X, NumberVector& v, Coordinate c);
@@ -149,10 +145,14 @@ public:
     NumberVector fundamentalCoefficients();
     NumberVector fundamentalCoefficients() const;
 
+    Type type();
+    unsigned rank();
+    
     //Vector operator-=(const Vector v);
     //Vector operator+=(const Vector v);
     //Vector& operator*=(rational r);
 private:
+    RootSpace space_;
     NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
     NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
 };

@@ -37,6 +37,12 @@ int main(void){
             std::runtime_error e(msg);
             throw e;
         }
+
+        // ÂåÆþ
+        S = T;
+        S = U;
+        S = V;
+        S = S;
         
     }catch (std::exception &e){
         std::cout << "Error\n what(): ";

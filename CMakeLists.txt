@@ -34,6 +34,7 @@ add_subdirectory(CartanMatrix)
 add_subdirectory(Vector)
 add_subdirectory(Trace)
 
+#target_link_libraries(Vector INTERFACE Cartan CartanMatrix)
 
 
 add_library(gweyl SHARED "")
