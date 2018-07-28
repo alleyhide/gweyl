@@ -7,6 +7,13 @@
 link_directories(../gweyl)
 
 #
+# work
+# for debug
+#
+add_executable(work work.cpp)
+target_link_libraries(work gweyl)
+
+#
 # test for class Cartan
 # tests are in the source
 #

@@ -28,6 +28,7 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 # sub directories
 #include_directories("${PROJECT_SOURCE_DIR}/CartanMatrix")
+
 add_subdirectory(Cartan)
 add_subdirectory(CartanMatrix)
 add_subdirectory(Vector)

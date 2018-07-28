@@ -20,7 +20,7 @@
 #include <boost/numeric/ublas/io.hpp>
 
 //
-// namespace "gweyl"
+// our namespace "gweyl"
 //
 namespace gweyl{
 
@@ -39,32 +39,6 @@ using matrix=boost::numeric::ublas::matrix<rational>;
 // this is vector of mathematics (primitive linear algera)
 //
 using NumberVector=boost::numeric::ublas::vector<rational>;
-
-#if 0
-class NumberVector : public boost::numeric::ublas::vector<rational>
-{
-public:
-    NumberVector(){}
-    explicit NumberVector(int){
-    }
-    ~NumberVector(){}
-    //bool operator==(const NumberVector &v);
-    //bool operator!=(const NumberVector &v);
-};
-#endif
-
-//
-// we define equality of matrix and that of number vector,
-// because boost::ublas does not have the equality
-//
-//bool operator==(const matrix &X, const matrix &Y);
-//bool operator!=(const matrix &X, const matrix &Y);
-bool equals(const matrix &X, const matrix &Y);
-
-//bool operator==(const NumberVector &v, const NumberVector &w);
-//bool operator!=(const NumberVector &v, const NumberVector &w);
-bool equals(const NumberVector &v, const NumberVector &w);
-
 
 //
 // gweyl treats simple Lie algebra types
@@ -123,8 +97,8 @@ public:
     // @return the 'i'-th fundamental weight
     //
     Vector FundamentalWeight(unsigned i);
-    Vector Zero();
-    Vector Rho();
+    //Vector Zero();
+    //Vector Rho();
 
     //
     // getter of X_
@@ -137,8 +111,11 @@ public:
     // getter of rank_
     // @return n
     //
-    int rank();
-    int rank() const;
+    unsigned rank();
+    unsigned rank() const;
+
+    bool operator==(const Cartan& rhs);
+    bool operator!=(const Cartan& rhs);
 protected:
     Type X_{Type::invalid};
     unsigned rank_{0};
@@ -163,30 +140,32 @@ class Vector : public RootSpace
 {
 public:    
     explicit Vector(Type X, NumberVector& v, Coordinate c);
-    void printf();
+    Vector();
+    virtual ~Vector();
+    void printf();///< for debug
 
     NumberVector simpleCoefficients();
     NumberVector simpleCoefficients() const;
     NumberVector fundamentalCoefficients();
     NumberVector fundamentalCoefficients() const;
 
-    Vector operator-() const;
-    Vector operator+() const;
+    //Vector operator-=(const Vector v);
+    //Vector operator+=(const Vector v);
+    //Vector& operator*=(rational r);
 private:
     NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
     NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
-    matrix CartanMatrix_;
-    matrix InverseCartanMatrix_;
 };
 
 //
 // The followings are operators of the class Vector
 //
 
-bool operator==(const Vector &v, const Vector &w);
-bool operator!=(const Vector &v, const Vector &w);
-Vector operator+(const Vector &v, const Vector &w);
-Vector operator-(const Vector &v, const Vector &w);
+bool equal(const Vector &v, const Vector &w);
+//bool operator==(const Vector &v, const Vector &w);
+//bool operator!=(const Vector &v, const Vector &w);
+//Vector operator+(const Vector &v, const Vector &w);
+//Vector operator-(const Vector &v, const Vector &w);
 rational InnerProduct(Vector& v, Vector& w);
 
 }
