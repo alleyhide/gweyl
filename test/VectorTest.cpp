@@ -101,8 +101,40 @@ int main(int argc, char** argv){
             throw e;
         }
         
+        
+        gweyl::Vector w1 = v1;
+        gweyl::Vector w4 = v4;
+        if (w1 == v1){
+            ;
+        }else {
+            std::string msg("Vector test substitute  0001");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        if (w4 != v1){
+            ;
+        }else {
+            std::string msg("Vector test substitute  0002");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        
+        
+    }catch (std::exception &e){
+        std::cout << "Error\n what(): ";
+        std::cout << e.what();
+        std::cout << std::endl;
+        return -1;
+    }
+
+    
+
+    try {
+
 
         
+
     }catch (std::exception &e){
         std::cout << "Error\n what(): ";
         std::cout << e.what();

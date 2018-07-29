@@ -40,7 +40,10 @@ using matrix=boost::numeric::ublas::matrix<rational>;
 //
 using NumberVector=boost::numeric::ublas::vector<rational>;
 
-
+//
+// we define equality of matirx and number vector
+// because boost does not define the equality
+//
 bool equal(const matrix &X, const matrix &Y);
 bool equal(const NumberVector &v, const NumberVector &w);
 
@@ -138,27 +141,35 @@ using DynkinDiagram = Cartan;
 //
 class Vector 
 {
-public:    
+public:
+    // constructors
     explicit Vector(Type X, NumberVector& v, Coordinate c);
     Vector();
     virtual ~Vector();
-    void printf();///< for debug
 
+    // for debug
+    void printf();
+
+    // getters
     NumberVector simpleCoefficients();
     NumberVector simpleCoefficients() const;
     NumberVector fundamentalCoefficients();
     NumberVector fundamentalCoefficients() const;
-
     Type type();
     Type type() const;
     unsigned rank();
     unsigned rank() const;
 
+    // eqaulity
+    bool isInSameSpace(const Vector& rhs);
     bool operator==(const Vector& rhs);
     bool operator!=(const Vector& rhs);
-    //Vector operator-=(const Vector v);
-    //Vector operator+=(const Vector v);
-    //Vector& operator*=(rational r);
+
+    // operators
+    Vector& operator=(const Vector& rhs);
+    Vector& operator+=(const Vector& rhs);
+    Vector& operator-=(const Vector& rhs);
+    Vector& operator*=(rational r);
 private:
     RootSpace space_;
     NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
@@ -166,14 +177,8 @@ private:
 };
 
 //
-// The followings are operators of the class Vector
+// operators of the class Vector
 //
-
-//bool equal(const Vector &v, const Vector &w);
-//bool operator==(const Vector &v, const Vector &w);
-//bool operator!=(const Vector &v, const Vector &w);
-//Vector operator+(const Vector &v, const Vector &w);
-//Vector operator-(const Vector &v, const Vector &w);
 rational InnerProduct(Vector& v, Vector& w);
 
 }

@@ -63,7 +63,7 @@ unsigned Vector::rank() const{
     return space_.rank();
 }
 
-bool Vector::operator==(const Vector& rhs){
+bool Vector::isInSameSpace(const Vector& rhs){
     if (this->type() != rhs.type()){
         return false;
     }
@@ -71,7 +71,15 @@ bool Vector::operator==(const Vector& rhs){
     if (rank() != rhs.rank()){
         return false;
     }
+    return true;
+}
 
+bool Vector::operator==(const Vector& rhs){
+
+    if (!isInSameSpace(rhs)){
+        return false;
+    }
+    
     if (!equal(fundamentalCoefficients_, rhs.fundamentalCoefficients())){
         return false;
     }
@@ -81,6 +89,70 @@ bool Vector::operator==(const Vector& rhs){
 
 bool Vector::operator!=(const Vector& rhs){
     return !(*this == rhs);
+}
+
+Vector& Vector::operator=(const Vector& rhs){
+
+    // this function does not check the equality of root space
+    // because *this is may defined invalid
+    
+    RootSpace V(rhs.type(), rhs.rank());
+    space_ = V;
+    simpleCoefficients_ = rhs.simpleCoefficients();
+    fundamentalCoefficients_ = rhs.fundamentalCoefficients();
+    
+    return *this;
+}
+
+Vector& Vector::operator+=(const Vector& rhs){
+
+    if (!isInSameSpace(rhs)){
+        std::string msg{"+= of Vector error "};
+        msg += "LHS ";
+        msg += std::to_string(static_cast<int>(type()));
+        msg += " ";
+        msg += std::to_string(rank());
+        msg += ", RHS ";
+        msg += std::to_string(static_cast<int>(rhs.type()));
+        msg += " ";
+        msg += std::to_string(rhs.rank());
+        std::runtime_error e(msg);
+        throw e;
+    }
+
+    simpleCoefficients_ += rhs.simpleCoefficients();
+    fundamentalCoefficients_ += rhs.fundamentalCoefficients();
+
+    return *this;
+}
+
+Vector& Vector::operator-=(const Vector& rhs){
+
+    if (!isInSameSpace(rhs)){
+        std::string msg{"-= of Vector error "};
+        msg += "LHS ";
+        msg += std::to_string(static_cast<int>(type()));
+        msg += " ";
+        msg += std::to_string(rank());
+        msg += ", RHS ";
+        msg += std::to_string(static_cast<int>(rhs.type()));
+        msg += " ";
+        msg += std::to_string(rhs.rank());
+        std::runtime_error e(msg);
+        throw e;
+    }
+
+    simpleCoefficients_ -= rhs.simpleCoefficients();
+    fundamentalCoefficients_ -= rhs.fundamentalCoefficients();
+
+    return *this;
+}
+
+Vector& Vector::operator*=(rational r){
+    simpleCoefficients_ *= r;
+    fundamentalCoefficients_ *= r;
+
+    return *this;
 }
 
 }
