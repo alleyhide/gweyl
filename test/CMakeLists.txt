@@ -33,10 +33,10 @@ add_executable(InverseCartanMatrixTest InverseCartanMatrixTest.cpp)
 target_link_libraries(InverseCartanMatrixTest gweyl)
 
 #
-# test for class Vector
+# test for class VectorRootSpace
 #
-add_executable(VectorTest VectorTest.cpp)
-target_link_libraries(VectorTest gweyl)
+add_executable(VectorRootSpaceTest VectorRootSpaceTest.cpp)
+target_link_libraries(VectorRootSpaceTest gweyl)
 
 
 
@@ -55,8 +55,8 @@ set_tests_properties(testCartan001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 #
 # tests for Vector
 #
-add_test(testVector001 VectorTest)
-set_tests_properties(testVector001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+add_test(testVectorRootSpace001 VectorRootSpaceTest)
+set_tests_properties(testVectorRootSpace001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 
 
