@@ -8,6 +8,7 @@
  * 
  */
 #include <map>
+#include <memory>
 
 #include "gweyl.hpp"
 #include "gweyl_private.hpp"
@@ -145,26 +146,32 @@ std::map<gweyl::Type, std::function<void(int)>> CartanTypeCheckFunctionTable {
     {Type::G, checkCartanTypeG},    
 };
 
-Cartan::Cartan(Type X, unsigned n):
-    X_(X), rank_(n)
+struct Cartan::Impl {
+    Type X_{Type::invalid};
+    unsigned rank_{0};
+};
+
+Cartan::Cartan(Type X, unsigned n): pImpl(std::make_unique<Impl>())
 {
-    CartanTypeCheckFunctionTable[X_](n);
+    CartanTypeCheckFunctionTable[X](n);
+    pImpl->X_ = X;
+    pImpl->rank_ = n;
     return;
 }
 
-Cartan::Cartan(const Cartan &rhs){
-    X_ = rhs.type();
-    rank_ = rhs.rank();
+Cartan::Cartan(const Cartan &rhs): pImpl(std::make_unique<Impl>()){
+    pImpl->X_ = rhs.type();
+    pImpl->rank_ = rhs.rank();
 }
 
 Cartan& Cartan::operator=(const Cartan& rhs){
-    X_ = rhs.type();
-    rank_ = rhs.rank();
+    pImpl->X_ = rhs.type();
+    pImpl->rank_ = rhs.rank();
     return *this;
 }
 
 
-Cartan::Cartan(){
+Cartan::Cartan(): pImpl(std::make_unique<Impl>()){
 }
 
 Cartan::~Cartan(){
@@ -172,47 +179,47 @@ Cartan::~Cartan(){
 }
 
 Type Cartan::type() const {
-    return X_;
+    return pImpl->X_;
 }
 
 Type Cartan::type(){
-    return X_;
+    return pImpl->X_;
 }
 
 unsigned Cartan::rank() const {
-    return rank_;
+    return pImpl->rank_;
 }
 
 unsigned Cartan::rank(){
-    return rank_;
+    return pImpl->rank_;
 }
 
 matrix Cartan::CartanMatrix(){
-    return gweyl::CartanMatrix(X_, rank_);
+    return gweyl::CartanMatrix(type(), rank());
 }
 
 matrix Cartan::InverseCartanMatrix(){
-    return gweyl::InverseCartanMatrix(X_, rank_);
+    return gweyl::InverseCartanMatrix(type(), rank());
 }
 
 VectorRootSpace Cartan::SimpleRoot(unsigned i){
-    NumberVector nv(rank_);
+    NumberVector nv(rank());
     nv(i-1) = 1;
-    VectorRootSpace v(X_, nv, Coordinate::simple);
+    VectorRootSpace v(type(), nv, Coordinate::simple);
     
     return v;
 }
 
 VectorRootSpace Cartan::FundamentalWeight(unsigned i){
-    NumberVector nv(rank_);
+    NumberVector nv(rank());
     nv(i-1) = 1;
-    VectorRootSpace v(X_, nv, Coordinate::simple);
+    VectorRootSpace v(type(), nv, Coordinate::simple);
     
     return v;
 }
 
 bool Cartan::operator==(const Cartan &rhs){
-    return ((X_ == rhs.type()) && (rank_ == rhs.rank()));
+    return ((type() == rhs.type()) && (rank() == rhs.rank()));
 }
 
 bool Cartan::operator!=(const Cartan &rhs){

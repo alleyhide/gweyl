@@ -123,8 +123,8 @@ public:
 
     
 protected:
-    Type X_{Type::invalid};
-    unsigned rank_{0};
+    struct Impl;
+    std::unique_ptr<Impl> pImpl;
 };
 
 //

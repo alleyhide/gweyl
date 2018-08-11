@@ -5,8 +5,8 @@
 
 cmake_minimum_required (VERSION 3.7.2)
 
-set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O2 -std=c++11")
-set(CMAKE_CXX_FLAGS_DEBUG "-Wall -O0 -g -std=c++11")
+set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O2 -std=c++14")
+set(CMAKE_CXX_FLAGS_DEBUG "-Wall -O0 -g -std=c++14")
 
 set(CMAKE_BUILD_TYPE Debug)
 
