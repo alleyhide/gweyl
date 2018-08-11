@@ -39,11 +39,11 @@ int main(int argc, char** argv){
             throw e;
         }
 
-        gweyl::Vector v1(gweyl::Type::A, nv1, gweyl::Coordinate::simple);
-        gweyl::Vector v2(gweyl::Type::A, nv2, gweyl::Coordinate::simple);
-        gweyl::Vector v3(gweyl::Type::A, nv3, gweyl::Coordinate::simple);
-        gweyl::Vector v4(gweyl::Type::A, nv4, gweyl::Coordinate::simple);
-        gweyl::Vector v5(gweyl::Type::B, nv4, gweyl::Coordinate::simple);
+        gweyl::VectorRootSpace v1(gweyl::Type::A, nv1, gweyl::Coordinate::simple);
+        gweyl::VectorRootSpace v2(gweyl::Type::A, nv2, gweyl::Coordinate::simple);
+        gweyl::VectorRootSpace v3(gweyl::Type::A, nv3, gweyl::Coordinate::simple);
+        gweyl::VectorRootSpace v4(gweyl::Type::A, nv4, gweyl::Coordinate::simple);
+        gweyl::VectorRootSpace v5(gweyl::Type::B, nv4, gweyl::Coordinate::simple);
 
 
         std::cout << "Hello gweyl 4" << std::endl;
@@ -102,8 +102,8 @@ int main(int argc, char** argv){
         }
         
         
-        gweyl::Vector w1 = v1;
-        gweyl::Vector w4 = v4;
+        gweyl::VectorRootSpace w1 = v1;
+        gweyl::VectorRootSpace w4 = v4;
         if (w1 == v1){
             ;
         }else {

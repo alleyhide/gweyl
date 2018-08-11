@@ -71,7 +71,7 @@ enum class Coordinate {
 //
 void trace(std::string& msg);
 
-class Vector;
+class VectorRootSpace;
 
 //
 // class Cartan
@@ -98,14 +98,14 @@ public:
     //
     // @return the 'i'-th simple root
     //
-    Vector SimpleRoot(unsigned i);
+    VectorRootSpace SimpleRoot(unsigned i);
 
     //
     // @return the 'i'-th fundamental weight
     //
-    Vector FundamentalWeight(unsigned i);
-    //Vector Zero();
-    //Vector Rho();
+    VectorRootSpace FundamentalWeight(unsigned i);
+    //VectorRootSpace Zero();
+    //VectorRootSpace Rho();
 
     //
     // getter of X_
@@ -139,13 +139,13 @@ using DynkinDiagram = Cartan;
 //
 // Vector in root space
 //
-class Vector 
+class VectorRootSpace 
 {
 public:
     // constructors
-    explicit Vector(Type X, NumberVector& v, Coordinate c);
-    Vector();
-    virtual ~Vector();
+    explicit VectorRootSpace(Type X, NumberVector& v, Coordinate c);
+    VectorRootSpace();
+    virtual ~VectorRootSpace();
 
     // for debug
     void printf();
@@ -161,15 +161,15 @@ public:
     unsigned rank() const;
 
     // eqaulity
-    bool isInSameSpace(const Vector& rhs);
-    bool operator==(const Vector& rhs);
-    bool operator!=(const Vector& rhs);
+    bool isInSameSpace(const VectorRootSpace& rhs);
+    bool operator==(const VectorRootSpace& rhs);
+    bool operator!=(const VectorRootSpace& rhs);
 
     // operators
-    Vector& operator=(const Vector& rhs);
-    Vector& operator+=(const Vector& rhs);
-    Vector& operator-=(const Vector& rhs);
-    Vector& operator*=(rational r);
+    VectorRootSpace& operator=(const VectorRootSpace& rhs);
+    VectorRootSpace& operator+=(const VectorRootSpace& rhs);
+    VectorRootSpace& operator-=(const VectorRootSpace& rhs);
+    VectorRootSpace& operator*=(rational r);
 private:
     RootSpace space_;
     NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
@@ -179,6 +179,6 @@ private:
 //
 // operators of the class Vector
 //
-rational InnerProduct(Vector& v, Vector& w);
+rational InnerProduct(VectorRootSpace& v, VectorRootSpace& w);
 
 }

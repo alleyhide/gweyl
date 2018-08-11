@@ -1,9 +1,9 @@
 /**
- * @file   Vector.cpp
+ * @file   VectorRootSpace.cpp
  * @author ALIKAWA Hidehisa <alleyhide@gmail.com>
  * @date   2018/07/07
  * 
- * @brief  class Vector
+ * @brief  class VectorRootSpace
  * 
  * 
  */
@@ -17,53 +17,53 @@
 namespace gweyl{
 
 //
-// constructor of Vector is implemented in ../Cartan/Vector.cpp
+// constructor of VectorRootSpace is implemented in ../Cartan/VectorRootSpace.cpp
 // because of dependencies in cmake
 //
 
 
-void Vector::printf(){
+void VectorRootSpace::printf(){
     std::cout << "simple " << simpleCoefficients_ << std::endl;
     std::cout << "fundamental " << fundamentalCoefficients_ << std::endl;
 }
 
-NumberVector Vector::simpleCoefficients() const{
+NumberVector VectorRootSpace::simpleCoefficients() const{
     return simpleCoefficients_;
 }
 
-NumberVector Vector::simpleCoefficients(){
+NumberVector VectorRootSpace::simpleCoefficients(){
     return simpleCoefficients();
 }
 
-NumberVector Vector::fundamentalCoefficients() const{
+NumberVector VectorRootSpace::fundamentalCoefficients() const{
     return fundamentalCoefficients_;
 }
 
-NumberVector Vector::fundamentalCoefficients(){
+NumberVector VectorRootSpace::fundamentalCoefficients(){
     return fundamentalCoefficients();
 }
 
 
 
-Type Vector::type(){
+Type VectorRootSpace::type(){
     return space_.type();
 }
 
 
-Type Vector::type() const{
+Type VectorRootSpace::type() const{
     return space_.type();
 }
 
 
-unsigned Vector::rank(){
+unsigned VectorRootSpace::rank(){
     return space_.rank();
 }
 
-unsigned Vector::rank() const{
+unsigned VectorRootSpace::rank() const{
     return space_.rank();
 }
 
-bool Vector::isInSameSpace(const Vector& rhs){
+bool VectorRootSpace::isInSameSpace(const VectorRootSpace& rhs){
     if (this->type() != rhs.type()){
         return false;
     }
@@ -74,7 +74,7 @@ bool Vector::isInSameSpace(const Vector& rhs){
     return true;
 }
 
-bool Vector::operator==(const Vector& rhs){
+bool VectorRootSpace::operator==(const VectorRootSpace& rhs){
 
     if (!isInSameSpace(rhs)){
         return false;
@@ -87,11 +87,11 @@ bool Vector::operator==(const Vector& rhs){
     return true;
 }
 
-bool Vector::operator!=(const Vector& rhs){
+bool VectorRootSpace::operator!=(const VectorRootSpace& rhs){
     return !(*this == rhs);
 }
 
-Vector& Vector::operator=(const Vector& rhs){
+VectorRootSpace& VectorRootSpace::operator=(const VectorRootSpace& rhs){
 
     // this function does not check the equality of root space
     // because *this is may defined invalid
@@ -104,10 +104,10 @@ Vector& Vector::operator=(const Vector& rhs){
     return *this;
 }
 
-Vector& Vector::operator+=(const Vector& rhs){
+VectorRootSpace& VectorRootSpace::operator+=(const VectorRootSpace& rhs){
 
     if (!isInSameSpace(rhs)){
-        std::string msg{"+= of Vector error "};
+        std::string msg{"+= of VectorRootSpace error "};
         msg += "LHS ";
         msg += std::to_string(static_cast<int>(type()));
         msg += " ";
@@ -126,10 +126,10 @@ Vector& Vector::operator+=(const Vector& rhs){
     return *this;
 }
 
-Vector& Vector::operator-=(const Vector& rhs){
+VectorRootSpace& VectorRootSpace::operator-=(const VectorRootSpace& rhs){
 
     if (!isInSameSpace(rhs)){
-        std::string msg{"-= of Vector error "};
+        std::string msg{"-= of VectorRootSpace error "};
         msg += "LHS ";
         msg += std::to_string(static_cast<int>(type()));
         msg += " ";
@@ -148,7 +148,7 @@ Vector& Vector::operator-=(const Vector& rhs){
     return *this;
 }
 
-Vector& Vector::operator*=(rational r){
+VectorRootSpace& VectorRootSpace::operator*=(rational r){
     simpleCoefficients_ *= r;
     fundamentalCoefficients_ *= r;
 

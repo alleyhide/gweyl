@@ -19,7 +19,7 @@ namespace gweyl{
 // because of dependencies in cmake
 //
 
-Vector::Vector(Type X, NumberVector& v, Coordinate c){
+VectorRootSpace::VectorRootSpace(Type X, NumberVector& v, Coordinate c){
 
     RootSpace V(X, v.size());
 
@@ -36,10 +36,10 @@ Vector::Vector(Type X, NumberVector& v, Coordinate c){
     }
 }
 
-Vector::Vector(){
+VectorRootSpace::VectorRootSpace(){
 }
 
-Vector::~Vector(){
+VectorRootSpace::~VectorRootSpace(){
 }
 
 }

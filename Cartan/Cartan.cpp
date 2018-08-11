@@ -181,18 +181,18 @@ matrix Cartan::InverseCartanMatrix(){
     return gweyl::InverseCartanMatrix(X_, rank_);
 }
 
-Vector Cartan::SimpleRoot(unsigned i){
+VectorRootSpace Cartan::SimpleRoot(unsigned i){
     NumberVector nv(rank_);
     nv(i-1) = 1;
-    Vector v(X_, nv, Coordinate::simple);
+    VectorRootSpace v(X_, nv, Coordinate::simple);
     
     return v;
 }
 
-Vector Cartan::FundamentalWeight(unsigned i){
+VectorRootSpace Cartan::FundamentalWeight(unsigned i){
     NumberVector nv(rank_);
     nv(i-1) = 1;
-    Vector v(X_, nv, Coordinate::simple);
+    VectorRootSpace v(X_, nv, Coordinate::simple);
     
     return v;
 }
@@ -210,16 +210,6 @@ Cartan& Cartan::operator=(const Cartan& rhs){
     rank_ = rhs.rank();
     return *this;
 }
-
-#if 0
-bool operator==(const Cartan &X, const Cartan &Y){
-    return ((X.type() == Y.type()) && (X.rank() == Y.rank()));
-}
-
-bool operator!=(const Cartan &X, const Cartan &Y){
-    return !(X == Y);
-}
-#endif
 
 
 }

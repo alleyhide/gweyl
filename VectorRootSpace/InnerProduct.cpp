@@ -16,16 +16,16 @@ namespace gweyl{
 //
 // inner product for simply laced root space (A, B, D, E)
 //
-std::function<rational(Vector&, Vector&)> InnerProductSimplyLaced
-= [](Vector& v, Vector& w){
+std::function<rational(VectorRootSpace&, VectorRootSpace&)> InnerProductSimplyLaced
+= [](VectorRootSpace& v, VectorRootSpace& w){
     return inner_prod(v.simpleCoefficients(), w.fundamentalCoefficients());
 };
 
 //
 // inner product for type B root space
 //
-std::function<rational(Vector&, Vector&)> InnerProductB
-= [](Vector& v, Vector& w){
+std::function<rational(VectorRootSpace&, VectorRootSpace&)> InnerProductB
+= [](VectorRootSpace& v, VectorRootSpace& w){
     NumberVector wNew = w.fundamentalCoefficients();
 
     unsigned n = wNew.size();
@@ -38,8 +38,8 @@ std::function<rational(Vector&, Vector&)> InnerProductB
 // inner product for type C root space
 //
 
-std::function<rational(Vector&, Vector&)> InnerProductC
-= [](Vector& v, Vector& w){
+std::function<rational(VectorRootSpace&, VectorRootSpace&)> InnerProductC
+= [](VectorRootSpace& v, VectorRootSpace& w){
     NumberVector wNew = w.fundamentalCoefficients();
 
     unsigned n = wNew.size();
@@ -52,8 +52,8 @@ std::function<rational(Vector&, Vector&)> InnerProductC
 // inner product for type F root space
 //
 
-std::function<rational(Vector&, Vector&)> InnerProductF
-= [](Vector& v, Vector& w){
+std::function<rational(VectorRootSpace&, VectorRootSpace&)> InnerProductF
+= [](VectorRootSpace& v, VectorRootSpace& w){
     NumberVector wNew = w.fundamentalCoefficients();
 
     wNew(2) *= rational(1,2);
@@ -66,8 +66,8 @@ std::function<rational(Vector&, Vector&)> InnerProductF
 // inner product for type G root space
 //
 
-std::function<rational(Vector&, Vector&)> InnerProductG
-= [](Vector& v, Vector& w){
+std::function<rational(VectorRootSpace&, VectorRootSpace&)> InnerProductG
+= [](VectorRootSpace& v, VectorRootSpace& w){
     NumberVector wNew = w.fundamentalCoefficients();
 
     wNew(1) *= rational(3);
@@ -78,7 +78,7 @@ std::function<rational(Vector&, Vector&)> InnerProductG
 //
 // table of inner product functions
 //
-std::map<gweyl::Type, std::function<rational(Vector&, Vector&)>> InnerProductFunctionTable{
+std::map<gweyl::Type, std::function<rational(VectorRootSpace&, VectorRootSpace&)>> InnerProductFunctionTable{
     {Type::A, InnerProductSimplyLaced},
     {Type::B, InnerProductB},
     {Type::C, InnerProductC},
@@ -88,7 +88,7 @@ std::map<gweyl::Type, std::function<rational(Vector&, Vector&)>> InnerProductFun
     {Type::G, InnerProductG},    
 };
 
-rational InnerProduct(Vector& v, Vector& w){
+rational InnerProduct(VectorRootSpace& v, VectorRootSpace& w){
     return InnerProductFunctionTable[v.type()](v, w);
 }
 
