@@ -32,16 +32,16 @@ include_directories("${PROJECT_BINARY_DIR}")
 add_subdirectory(NumberVector)
 add_subdirectory(Cartan)
 add_subdirectory(CartanMatrix)
-add_subdirectory(Vector)
+add_subdirectory(VectorRootSpace)
 add_subdirectory(Trace)
 
 # dependencies
-target_link_libraries(Vector INTERFACE NumberVector)
+target_link_libraries(VectorRootSpace INTERFACE NumberVector)
 
 
 add_library(gweyl SHARED "")
 
-target_link_libraries (gweyl NumberVector Cartan CartanMatrix Trace Vector)
+target_link_libraries (gweyl NumberVector Cartan CartanMatrix Trace VectorRootSpace)
 
 install (TARGETS gweyl LIBRARY DESTINATION lib)
 install (FILES "gweyl.hpp" DESTINATION include)
