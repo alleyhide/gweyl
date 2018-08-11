@@ -8,7 +8,8 @@
  * 
  */
 
-
+#include <iostream>
+#include <boost/numeric/ublas/io.hpp>
 
 #include "gweyl.hpp"
 #include "gweyl_private.hpp"

@@ -7,6 +7,8 @@
  * 
  * 
  */
+#include <map>
+
 #include "gweyl.hpp"
 #include "gweyl_private.hpp"
 

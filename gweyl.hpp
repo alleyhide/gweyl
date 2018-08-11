@@ -9,11 +9,6 @@
  */
 #pragma once
 
-#include <exception>
-#include <map>
-#include <iostream>
-#include <functional>
-
 #include <boost/rational.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>

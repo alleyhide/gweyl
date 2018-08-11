@@ -7,7 +7,12 @@
  * 
  * 
  */
+
+#include <map>
+#include <functional>
+
 #include "gweyl.hpp"
+
 
 namespace gweyl{
 
