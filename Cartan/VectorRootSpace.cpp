@@ -42,4 +42,25 @@ VectorRootSpace::VectorRootSpace(){
 VectorRootSpace::~VectorRootSpace(){
 }
 
+VectorRootSpace::VectorRootSpace(const VectorRootSpace& rhs){
+    RootSpace V(rhs.type(), rhs.rank());
+    space_ = V;
+    simpleCoefficients_ = rhs.simpleCoefficients();
+    fundamentalCoefficients_ = rhs.fundamentalCoefficients();
+}
+
+VectorRootSpace& VectorRootSpace::operator=(const VectorRootSpace& rhs){
+
+    // this function does not check the equality of root space
+    // because *this is may defined invalid
+    
+    RootSpace V(rhs.type(), rhs.rank());
+    space_ = V;
+    simpleCoefficients_ = rhs.simpleCoefficients();
+    fundamentalCoefficients_ = rhs.fundamentalCoefficients();
+    
+    return *this;
+}
+
+
 }

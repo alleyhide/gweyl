@@ -152,6 +152,18 @@ Cartan::Cartan(Type X, unsigned n):
     return;
 }
 
+Cartan::Cartan(const Cartan &rhs){
+    X_ = rhs.type();
+    rank_ = rhs.rank();
+}
+
+Cartan& Cartan::operator=(const Cartan& rhs){
+    X_ = rhs.type();
+    rank_ = rhs.rank();
+    return *this;
+}
+
+
 Cartan::Cartan(){
 }
 
@@ -207,11 +219,6 @@ bool Cartan::operator!=(const Cartan &rhs){
     return !(*this == rhs);
 }
 
-Cartan& Cartan::operator=(const Cartan& rhs){
-    X_ = rhs.type();
-    rank_ = rhs.rank();
-    return *this;
-}
 
 
 }

@@ -78,7 +78,9 @@ class Cartan
 public:
     explicit Cartan(Type X, unsigned n);
     Cartan();
+    Cartan(const Cartan &rhs);
     virtual ~Cartan();
+    Cartan& operator=(const Cartan& rhs);
 
     //
     // @return Cartan matrix
@@ -119,7 +121,7 @@ public:
     bool operator==(const Cartan& rhs);
     bool operator!=(const Cartan& rhs);
 
-    Cartan& operator=(const Cartan& rhs);
+    
 protected:
     Type X_{Type::invalid};
     unsigned rank_{0};
@@ -141,6 +143,8 @@ public:
     explicit VectorRootSpace(Type X, NumberVector& v, Coordinate c);
     VectorRootSpace();
     virtual ~VectorRootSpace();
+    VectorRootSpace(const VectorRootSpace& rhs);
+    VectorRootSpace& operator=(const VectorRootSpace& rhs);
 
     // for debug
     void printf();
@@ -161,7 +165,7 @@ public:
     bool operator!=(const VectorRootSpace& rhs);
 
     // operators
-    VectorRootSpace& operator=(const VectorRootSpace& rhs);
+    
     VectorRootSpace& operator+=(const VectorRootSpace& rhs);
     VectorRootSpace& operator-=(const VectorRootSpace& rhs);
     VectorRootSpace& operator*=(rational r);
