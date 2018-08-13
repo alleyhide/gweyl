@@ -122,7 +122,7 @@ public:
     bool operator!=(const Cartan& rhs);
 
     
-protected:
+private:
     struct Impl;
     std::unique_ptr<Impl> pImpl;
 };
@@ -170,6 +170,9 @@ public:
     VectorRootSpace& operator-=(const VectorRootSpace& rhs);
     VectorRootSpace& operator*=(rational r);
 private:
+    //struct Impl;
+    //std::unique_ptr<Impl> pImpl;
+    
     RootSpace space_;
     NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
     NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
