@@ -18,40 +18,44 @@
 
 namespace gweyl{
 
-//
-// other implementations of Vector is in ../Vector/Vector.cpp
-// and constructor of Vector is implemented here
-// because of dependencies in cmake
-//
+struct VectorRootSpace::Impl {
+    RootSpace space_;
+    NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
+    NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
+};
 
-VectorRootSpace::VectorRootSpace(Type X, NumberVector& v, Coordinate c){
+VectorRootSpace::VectorRootSpace(Type X, NumberVector& v, Coordinate c)    
+    : pImpl(std::make_unique<Impl>())
+{
 
     RootSpace V(X, v.size());
 
-    space_ = V;
+    pImpl->space_ = V;
     
     if (c == Coordinate::simple){
-        simpleCoefficients_ = v;
-        matrix A = space_.CartanMatrix();
-        fundamentalCoefficients_ = prod(A, v);
+        pImpl->simpleCoefficients_ = v;
+        matrix A = pImpl->space_.CartanMatrix();
+        pImpl->fundamentalCoefficients_ = prod(A, v);
     }else {
-        matrix P = space_.InverseCartanMatrix();
-        simpleCoefficients_ = prod(P, v);
-        fundamentalCoefficients_ = v;
+        matrix P = pImpl->space_.InverseCartanMatrix();
+        pImpl->simpleCoefficients_ = prod(P, v);
+        pImpl->fundamentalCoefficients_ = v;
     }
 }
 
-VectorRootSpace::VectorRootSpace(){
+VectorRootSpace::VectorRootSpace(): pImpl(std::make_unique<Impl>())
+{
 }
 
 VectorRootSpace::~VectorRootSpace(){
 }
 
-VectorRootSpace::VectorRootSpace(const VectorRootSpace& rhs){
+VectorRootSpace::VectorRootSpace(const VectorRootSpace& rhs): pImpl(std::make_unique<Impl>())
+{
     RootSpace V(rhs.type(), rhs.rank());
-    space_ = V;
-    simpleCoefficients_ = rhs.simpleCoefficients();
-    fundamentalCoefficients_ = rhs.fundamentalCoefficients();
+    pImpl->space_ = V;
+    pImpl->simpleCoefficients_ = rhs.simpleCoefficients();
+    pImpl->fundamentalCoefficients_ = rhs.fundamentalCoefficients();
 }
 
 VectorRootSpace& VectorRootSpace::operator=(const VectorRootSpace& rhs){
@@ -60,21 +64,21 @@ VectorRootSpace& VectorRootSpace::operator=(const VectorRootSpace& rhs){
     // because *this is may defined invalid
     
     RootSpace V(rhs.type(), rhs.rank());
-    space_ = V;
-    simpleCoefficients_ = rhs.simpleCoefficients();
-    fundamentalCoefficients_ = rhs.fundamentalCoefficients();
+    pImpl->space_ = V;
+    pImpl->simpleCoefficients_ = rhs.simpleCoefficients();
+    pImpl->fundamentalCoefficients_ = rhs.fundamentalCoefficients();
     
     return *this;
 }
 
 
 void VectorRootSpace::printf(){
-    std::cout << "simple " << simpleCoefficients_ << std::endl;
-    std::cout << "fundamental " << fundamentalCoefficients_ << std::endl;
+    std::cout << "simple " << pImpl->simpleCoefficients_ << std::endl;
+    std::cout << "fundamental " << pImpl->fundamentalCoefficients_ << std::endl;
 }
 
 NumberVector VectorRootSpace::simpleCoefficients() const{
-    return simpleCoefficients_;
+    return pImpl->simpleCoefficients_;
 }
 
 NumberVector VectorRootSpace::simpleCoefficients(){
@@ -82,7 +86,7 @@ NumberVector VectorRootSpace::simpleCoefficients(){
 }
 
 NumberVector VectorRootSpace::fundamentalCoefficients() const{
-    return fundamentalCoefficients_;
+    return pImpl->fundamentalCoefficients_;
 }
 
 NumberVector VectorRootSpace::fundamentalCoefficients(){
@@ -92,21 +96,21 @@ NumberVector VectorRootSpace::fundamentalCoefficients(){
 
 
 Type VectorRootSpace::type(){
-    return space_.type();
+    return pImpl->space_.type();
 }
 
 
 Type VectorRootSpace::type() const{
-    return space_.type();
+    return pImpl->space_.type();
 }
 
 
 unsigned VectorRootSpace::rank(){
-    return space_.rank();
+    return pImpl->space_.rank();
 }
 
 unsigned VectorRootSpace::rank() const{
-    return space_.rank();
+    return pImpl->space_.rank();
 }
 
 bool VectorRootSpace::isInSameSpace(const VectorRootSpace& rhs){
@@ -126,7 +130,7 @@ bool VectorRootSpace::operator==(const VectorRootSpace& rhs){
         return false;
     }
     
-    if (!equal(fundamentalCoefficients_, rhs.fundamentalCoefficients())){
+    if (!equal(pImpl->fundamentalCoefficients_, rhs.fundamentalCoefficients())){
         return false;
     }
 
@@ -154,8 +158,8 @@ VectorRootSpace& VectorRootSpace::operator+=(const VectorRootSpace& rhs){
         throw e;
     }
 
-    simpleCoefficients_ += rhs.simpleCoefficients();
-    fundamentalCoefficients_ += rhs.fundamentalCoefficients();
+    pImpl->simpleCoefficients_ += rhs.simpleCoefficients();
+    pImpl->fundamentalCoefficients_ += rhs.fundamentalCoefficients();
 
     return *this;
 }
@@ -176,15 +180,15 @@ VectorRootSpace& VectorRootSpace::operator-=(const VectorRootSpace& rhs){
         throw e;
     }
 
-    simpleCoefficients_ -= rhs.simpleCoefficients();
-    fundamentalCoefficients_ -= rhs.fundamentalCoefficients();
+    pImpl->simpleCoefficients_ -= rhs.simpleCoefficients();
+    pImpl->fundamentalCoefficients_ -= rhs.fundamentalCoefficients();
 
     return *this;
 }
 
 VectorRootSpace& VectorRootSpace::operator*=(rational r){
-    simpleCoefficients_ *= r;
-    fundamentalCoefficients_ *= r;
+    pImpl->simpleCoefficients_ *= r;
+    pImpl->fundamentalCoefficients_ *= r;
 
     return *this;
 }

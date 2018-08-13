@@ -165,21 +165,16 @@ public:
     bool operator!=(const VectorRootSpace& rhs);
 
     // operators
-    
     VectorRootSpace& operator+=(const VectorRootSpace& rhs);
     VectorRootSpace& operator-=(const VectorRootSpace& rhs);
     VectorRootSpace& operator*=(rational r);
 private:
-    //struct Impl;
-    //std::unique_ptr<Impl> pImpl;
-    
-    RootSpace space_;
-    NumberVector simpleCoefficients_;///< coefficients for simple roots coordinate
-    NumberVector fundamentalCoefficients_;///< coefficients for fundamental weights coordinate
+    struct Impl;
+    std::unique_ptr<Impl> pImpl;
 };
 
 //
-// operators of the class Vector
+// operators of the class VectorRootSpace
 //
 rational InnerProduct(VectorRootSpace& v, VectorRootSpace& w);
 
