@@ -213,7 +213,7 @@ VectorRootSpace Cartan::SimpleRoot(unsigned i){
 VectorRootSpace Cartan::FundamentalWeight(unsigned i){
     NumberVector nv(rank());
     nv(i-1) = 1;
-    VectorRootSpace v(type(), nv, Coordinate::simple);
+    VectorRootSpace v(type(), nv, Coordinate::fundamental);
     
     return v;
 }

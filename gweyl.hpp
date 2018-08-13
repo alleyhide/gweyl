@@ -101,8 +101,27 @@ public:
     // @return the 'i'-th fundamental weight
     //
     VectorRootSpace FundamentalWeight(unsigned i);
-    //VectorRootSpace Zero();
-    //VectorRootSpace Rho();
+
+    //
+    // @return longest root
+    //
+    VectorRootSpace LongestRoot();
+
+    //
+    // @return half sum of positive roots
+    //
+    VectorRootSpace Rho();
+
+    //
+    // @return positive roots
+    //
+    std::vector<VectorRootSpace> PositiveRoots();
+
+    //
+    // @return roots
+    //
+    std::vector<VectorRootSpace> Roots();
+
 
     //
     // getter of X_
@@ -177,5 +196,10 @@ private:
 // operators of the class VectorRootSpace
 //
 rational InnerProduct(VectorRootSpace& v, VectorRootSpace& w);
+VectorRootSpace operator+(const VectorRootSpace& v1, const VectorRootSpace& v2);
+VectorRootSpace operator-(const VectorRootSpace& v1, const VectorRootSpace& v2);
+VectorRootSpace operator*(const VectorRootSpace& v1, rational r);
+VectorRootSpace operator*(rational r, const VectorRootSpace& v1);
+
 
 }
