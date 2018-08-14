@@ -10,6 +10,7 @@
 
 #include <map>
 #include <functional>
+#include <boost/assign.hpp>
 
 #include "gweyl.hpp"
 
@@ -52,8 +53,19 @@ std::function<std::vector<VectorRootSpace>(int)> PositiveRootsF = [](int n){
 };
 
 std::function<std::vector<VectorRootSpace>(int)> PositiveRootsG = [](int n){
+
+    std::vector<std::vector<gweyl::rational> > vv{ {1,0}, {0,1}, {1,1}, {2,1}, {3,1}, {3,2}};
+    
     std::vector<VectorRootSpace> proots;
-    // implement
+
+    for (std::vector<gweyl::rational>& x : vv){
+        NumberVector nv(x.size());
+        std::copy(x.begin(), x.end(), nv.begin());
+        VectorRootSpace v(Type::G, nv, Coordinate::simple);
+        proots.push_back(v);
+    }
+
+    
     return proots;
 };
 

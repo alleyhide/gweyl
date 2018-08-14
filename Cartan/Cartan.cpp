@@ -123,7 +123,7 @@ std::function<void(int)> checkCartanTypeF = [](int n){
 std::function<void(int)> checkCartanTypeG = [](int n){
     if (n != 2){
         std::string msg{"Cartan classification error "};
-        msg += "type:F, n:";
+        msg += "type:G, n:";
         msg += std::to_string(n);
         msg += "\n Remark n must be 2";
         std::runtime_error e(msg);

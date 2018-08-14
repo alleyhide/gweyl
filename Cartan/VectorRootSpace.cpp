@@ -27,7 +27,6 @@ struct VectorRootSpace::Impl {
 VectorRootSpace::VectorRootSpace(Type X, NumberVector& v, Coordinate c)    
     : pImpl(std::make_unique<Impl>())
 {
-
     RootSpace V(X, v.size());
 
     pImpl->space_ = V;
@@ -82,7 +81,7 @@ NumberVector VectorRootSpace::simpleCoefficients() const{
 }
 
 NumberVector VectorRootSpace::simpleCoefficients(){
-    return simpleCoefficients();
+    return pImpl->simpleCoefficients_;
 }
 
 NumberVector VectorRootSpace::fundamentalCoefficients() const{
@@ -90,7 +89,7 @@ NumberVector VectorRootSpace::fundamentalCoefficients() const{
 }
 
 NumberVector VectorRootSpace::fundamentalCoefficients(){
-    return fundamentalCoefficients();
+    return pImpl->fundamentalCoefficients_;
 }
 
 
