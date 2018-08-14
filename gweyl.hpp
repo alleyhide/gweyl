@@ -103,9 +103,9 @@ public:
     VectorRootSpace FundamentalWeight(unsigned i);
 
     //
-    // @return longest root
+    // @return highest root
     //
-    VectorRootSpace LongestRoot();
+    VectorRootSpace HighestRoot();
 
     //
     // @return half sum of positive roots
@@ -198,8 +198,8 @@ private:
 rational InnerProduct(VectorRootSpace& v, VectorRootSpace& w);
 VectorRootSpace operator+(const VectorRootSpace& v1, const VectorRootSpace& v2);
 VectorRootSpace operator-(const VectorRootSpace& v1, const VectorRootSpace& v2);
-VectorRootSpace operator*(const VectorRootSpace& v1, rational r);
-VectorRootSpace operator*(rational r, const VectorRootSpace& v1);
+VectorRootSpace operator*(const VectorRootSpace& v1, const rational r);
+VectorRootSpace operator*(const rational r, const VectorRootSpace& v1);
 
 
 }

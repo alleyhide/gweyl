@@ -4,15 +4,18 @@
 
 int main(int argc, char** argv){
 
-    std::cout << "Hello gweyl!" << std::endl;
-    
+
     try {
-        gweyl::NumberVector nv(2);
-        nv(1) = 1;
-        gweyl::VectorRootSpace v(gweyl::Type::G, nv, gweyl::Coordinate::fundamental);
-        v.printf();
 
+        if (1){
+            ;
+        }else {
+            std::string msg("Positive Roots  0001");
+            std::runtime_error e(msg);
+            throw e;
+        }
 
+        
     }catch (std::exception &e){
         std::cout << "Error\n what(): ";
         std::cout << e.what();
@@ -20,5 +23,6 @@ int main(int argc, char** argv){
         return -1;
     }
 
+    
     return 0;
 }

@@ -38,6 +38,12 @@ target_link_libraries(InverseCartanMatrixTest gweyl)
 add_executable(VectorRootSpaceTest VectorRootSpaceTest.cpp)
 target_link_libraries(VectorRootSpaceTest gweyl)
 
+#
+# test for class Positive Roots
+#
+add_executable(PositiveRootsTest PositiveRootsTest.cpp)
+target_link_libraries(PositiveRootsTest gweyl)
+
 
 
 #
@@ -53,10 +59,16 @@ add_test(testCartan001 CartanTest)
 set_tests_properties(testCartan001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 #
-# tests for Vector
+# tests for Vector in root space
 #
 add_test(testVectorRootSpace001 VectorRootSpaceTest)
 set_tests_properties(testVectorRootSpace001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+
+#
+# tests for Positive Roots
+#
+add_test(testPositiveRoots001 PositiveRootsTest)
+set_tests_properties(testPositiveRoots001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 
 

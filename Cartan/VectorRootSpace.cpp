@@ -206,14 +206,14 @@ VectorRootSpace operator-(const VectorRootSpace& v1, const VectorRootSpace& v2){
     return w;
 }
 
-VectorRootSpace operator*(const VectorRootSpace& v1, rational r){
+VectorRootSpace operator*(const VectorRootSpace& v1, const rational r){
     VectorRootSpace w(v1);
     w *= r;
     return w;
 }
 
 
-VectorRootSpace operator*(rational r, const VectorRootSpace& v1){
+VectorRootSpace operator*(const rational r, const VectorRootSpace& v1){
     VectorRootSpace w(v1);
     w *= r;
     return w;
