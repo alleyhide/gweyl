@@ -46,8 +46,10 @@ int main(int argc, char** argv){
         for (gweyl::VectorRootSpace& x: proots){
             //x.printf();
             gweyl::NumberVector nv = x.simpleCoefficients();
-            std::cout << nv << std::endl;
+            //std::cout << nv << std::endl;
+            std::cout << nv;
         }
+        std::cout << std::endl;
         
         
     }catch (std::exception &e){

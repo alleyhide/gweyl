@@ -18,25 +18,162 @@ namespace gweyl {
 
 std::function<std::vector<VectorRootSpace>(int)> PositiveRootsA = [](int n){
     std::vector<VectorRootSpace> proots;
-    // implement
+
+    // a_i + .. + a_j
+    for (int i=0; i<n; ++i){
+        for (int j=i; j<n; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j+1; ++k){
+                nv(k) = 1;
+            }
+            VectorRootSpace v(Type::A, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
     return proots;
 };
 
 std::function<std::vector<VectorRootSpace>(int)> PositiveRootsB = [](int n){
     std::vector<VectorRootSpace> proots;
-    // implement
+
+    // a_i + .. + a_j
+    for (int i=0; i<n; ++i){
+        for (int j=i; j<n; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j+1; ++k){
+                nv(k) = 1;
+            }
+            VectorRootSpace v(Type::B, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
+    // a_i + .. + a_{j-1} + 2a_j + .. + 2a_n
+    for (int i=0; i<n-1; ++i){
+        for (int j=i+1; j<n; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j; ++k){
+                nv(k) = 1;
+            }
+            for (int k=j; k<n;++k){
+                nv(k) =2;
+            }
+            VectorRootSpace v(Type::B, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+    
     return proots;
 };
 
 std::function<std::vector<VectorRootSpace>(int)> PositiveRootsC = [](int n){
     std::vector<VectorRootSpace> proots;
-    // implement
+
+    // a_i + .. + a_j
+    for (int i=0; i<n; ++i){
+        for (int j=i; j<n; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j+1; ++k){
+                nv(k) = 1;
+            }
+            VectorRootSpace v(Type::C, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
+    // a_i + .. + a_{j-1} + 2a_j + .. + 2a_{n-1} + 2a_n
+    for (int i=0; i<n-1; ++i){
+        for (int j=i+1; j<n-1; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j; ++k){
+                nv(k) = 1;
+            }
+            for (int k=j; k<n-1;++k){
+                nv(k) =2;
+            }
+            nv(n-1) = 1;
+            VectorRootSpace v(Type::C, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
+    // 2a_i + .. + 2a_{n-1} + a_n
+    for (int i=0; i<n-1; ++i){
+        NumberVector nv(n);
+        for (int j=i; j<n-1; ++j){
+            nv(j) = 2;
+        }
+        nv(n-1) = 1;
+        VectorRootSpace v(Type::C, nv, Coordinate::simple);
+        proots.push_back(v);
+    }
     return proots;
 };
 
 std::function<std::vector<VectorRootSpace>(int)> PositiveRootsD = [](int n){
     std::vector<VectorRootSpace> proots;
-// implement
+
+    // a_i + .. + a_j
+    for (int i=0; i<n-1; ++i){
+        for (int j=i; j<n-1; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j+1; ++k){
+                nv(k) = 1;
+            }
+            VectorRootSpace v(Type::D, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
+    // a_i + .. + a_n
+    for (int i=0; i<n-2; ++i){
+        NumberVector nv(n);
+        for (int j=i; j<n; ++j){
+            nv(j) = 1;
+        }
+        VectorRootSpace v(Type::D, nv, Coordinate::simple);
+        proots.push_back(v);
+    }
+
+    // a_n
+    {
+        NumberVector nv(n);
+        nv(n-1) = 1;
+        VectorRootSpace v(Type::D, nv, Coordinate::simple);
+        proots.push_back(v);
+    }
+
+    // a_i + .. + a_{n-2} + a_n
+    for (int i=0; i<n-2; ++i){
+        NumberVector nv(n);
+        for (int j=i; j<n; ++j){
+            nv(j) = 1;
+        }
+        nv(n-2) = 0;
+        VectorRootSpace v(Type::D, nv, Coordinate::simple);
+        proots.push_back(v);
+    }
+
+    // a_i + .. + a_{j-1} + 2a_j + .. + 2a_{n-2} + a_{n-1} + 2a_n
+    for (int i=0; i<n-3; ++i){
+        for (int j=i+1; j<n-2; ++j){
+            NumberVector nv(n);
+            for (int k=i; k<j; ++k){
+                nv(k) = 1;
+            }
+            for (int k=j; k<n-2;++k){
+                nv(k) = 2;
+            }
+            nv(n-2) = 1;
+            nv(n-1) = 1;
+            
+            VectorRootSpace v(Type::D, nv, Coordinate::simple);
+            proots.push_back(v);
+        }
+    }
+
+    
     return proots;
 };
 
