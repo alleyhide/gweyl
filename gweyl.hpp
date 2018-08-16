@@ -103,12 +103,12 @@ public:
     VectorRootSpace FundamentalWeight(unsigned i);
 
     //
-    // @return highest root
+    // @return highest root <not implemented>
     //
     VectorRootSpace HighestRoot();
 
     //
-    // @return half sum of positive roots
+    // @return half sum of positive roots <not implemented>
     //
     VectorRootSpace Rho();
 
@@ -118,25 +118,17 @@ public:
     std::vector<VectorRootSpace> PositiveRoots();
 
     //
-    // @return roots
+    // @return roots <not implemented>
     //
     std::vector<VectorRootSpace> Roots();
 
-
-    //
-    // getter of X_
-    // @return type
-    //
+    // getters
     Type type();
     Type type() const;
-    
-    //
-    // getter of rank_
-    // @return n
-    //
     unsigned rank();
     unsigned rank() const;
 
+    // operators
     bool operator==(const Cartan& rhs);
     bool operator!=(const Cartan& rhs);
 
@@ -206,13 +198,31 @@ VectorRootSpace operator-(const VectorRootSpace& v1, const VectorRootSpace& v2);
 VectorRootSpace operator*(const VectorRootSpace& v1, const rational r);
 VectorRootSpace operator*(const rational r, const VectorRootSpace& v1);
 
+//
+// class Representation
+//
 class Representation{
 public:
     //constructors
     Representation();
+    explicit Representation(VectorRootSpace& highestweight);
     virtual ~Representation();
     Representation(const Representation& rhs);
     Representation& operator=(const Representation& rhs);
+
+    //getters
+    Type type();
+    Type type() const;
+    unsigned rank();
+    unsigned rank() const;
+    VectorRootSpace highestweight();
+    VectorRootSpace highestweight() const;
+
+    //operators
+    bool operator==(const Representation& rhs);
+    bool operator!=(const Representation& rhs);
+
+    int dimension();
     
 private:
     struct Impl;
