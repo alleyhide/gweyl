@@ -187,6 +187,11 @@ public:
     VectorRootSpace& operator+=(const VectorRootSpace& rhs);
     VectorRootSpace& operator-=(const VectorRootSpace& rhs);
     VectorRootSpace& operator*=(rational r);
+
+    // dominant integral
+    bool dominant();
+    bool integral();
+    bool isDominantIntegral();
 private:
     struct Impl;
     std::unique_ptr<Impl> pImpl;

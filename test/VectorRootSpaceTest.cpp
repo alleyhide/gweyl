@@ -286,13 +286,148 @@ int main(int argc, char** argv){
         }
 
         
-     }catch (std::exception &e){
+    }catch (std::exception &e){
         std::cout << "Error\n what(): ";
         std::cout << e.what();
         std::cout << std::endl;
         return -1;
     }   
-    
+
+    // dominant integral
+    try {
+        gweyl::NumberVector nv1(4);
+        gweyl::VectorRootSpace v1(gweyl::Type::A, nv1, gweyl::Coordinate::fundamental);
+
+        
+        if (v1.dominant()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0001");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (v1.integral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0002");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (v1.isDominantIntegral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0003");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        gweyl::NumberVector nv2(4);
+        nv2(0) = 1; nv2(1) = 2; nv2(2)=3; nv2(3) = 4;
+        gweyl::VectorRootSpace v2(gweyl::Type::A, nv2, gweyl::Coordinate::fundamental);
+        if (v2.dominant()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0004");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (v2.integral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0005");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (v2.isDominantIntegral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0006");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        gweyl::NumberVector nv3(4);
+        nv3(0) = 1; nv3(1) = 2; nv3(2)=-3; nv3(3) = 4;
+        gweyl::VectorRootSpace v3(gweyl::Type::A, nv3, gweyl::Coordinate::fundamental);
+        if (!v3.dominant()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0007");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (v3.integral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0008");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (!v3.isDominantIntegral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0009");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        gweyl::NumberVector nv4(4);
+        nv4(0) = 1; nv4(1) = 2; nv4(2)= gweyl::rational(1,2); nv4(3) = 4;
+        gweyl::VectorRootSpace v4(gweyl::Type::A, nv4, gweyl::Coordinate::fundamental);
+        if (v4.dominant()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0010");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (!v4.integral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0011");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (!v4.isDominantIntegral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0012");
+            std::runtime_error e(msg);
+            throw e;
+        }
+
+        gweyl::NumberVector nv5(4);
+        nv5(0) = 1; nv5(1) = 2; nv5(2)= gweyl::rational(1,2); nv5(3) = -4;
+        gweyl::VectorRootSpace v5(gweyl::Type::A, nv5, gweyl::Coordinate::fundamental);
+        if (!v5.dominant()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0013");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (!v5.integral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0014");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        if (!v5.isDominantIntegral()){
+            ;
+        }else {
+            std::string msg("Vector test dominant integral  0015");
+            std::runtime_error e(msg);
+            throw e;
+        }
+        
+    }catch (std::exception &e){
+        std::cout << "Error\n what(): ";
+        std::cout << e.what();
+        std::cout << std::endl;
+        return -1;
+    }   
+        
     
 
 

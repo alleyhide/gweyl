@@ -192,6 +192,34 @@ VectorRootSpace& VectorRootSpace::operator*=(rational r){
     return *this;
 }
 
+bool VectorRootSpace::dominant(){
+
+    NumberVector nv = fundamentalCoefficients();
+    for (rational x : nv){
+        if (x < 0){
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+bool VectorRootSpace::integral(){
+
+    NumberVector nv = fundamentalCoefficients();
+    for (rational x : nv){
+        if (x.denominator() != 1){
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+bool VectorRootSpace::isDominantIntegral(){
+    return ((dominant()) && (integral()));
+}
+
 VectorRootSpace operator+(const VectorRootSpace& v1, const VectorRootSpace& v2){
     VectorRootSpace w(v1);
     w += v2;
@@ -217,5 +245,7 @@ VectorRootSpace operator*(const rational r, const VectorRootSpace& v1){
     w *= r;
     return w;
 }
+
+
 
 }
