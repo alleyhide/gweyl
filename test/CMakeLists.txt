@@ -39,10 +39,16 @@ add_executable(VectorRootSpaceTest VectorRootSpaceTest.cpp)
 target_link_libraries(VectorRootSpaceTest gweyl)
 
 #
-# test for class Positive Roots
+# test for Positive Roots
 #
 add_executable(PositiveRootsTest PositiveRootsTest.cpp)
 target_link_libraries(PositiveRootsTest gweyl)
+
+#
+# test for class Representation
+#
+add_executable(RepresentationTest RepresentationTest.cpp)
+target_link_libraries(RepresentationTest gweyl)
 
 
 
@@ -64,7 +70,11 @@ set_tests_properties(testCartan001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 add_test(testVectorRootSpace001 VectorRootSpaceTest)
 set_tests_properties(testVectorRootSpace001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
-
+#
+# tests for Representation
+#
+add_test(testRepresentation001 RepresentationTest)
+set_tests_properties(testRepresentation001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 #
 # test for CartanMatrix

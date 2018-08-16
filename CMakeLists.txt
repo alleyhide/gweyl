@@ -33,6 +33,7 @@ add_subdirectory(NumberVector)
 add_subdirectory(Cartan)
 add_subdirectory(CartanMatrix)
 add_subdirectory(VectorRootSpace)
+add_subdirectory(Representation)
 add_subdirectory(Trace)
 
 # dependencies

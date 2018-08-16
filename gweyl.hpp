@@ -206,5 +206,18 @@ VectorRootSpace operator-(const VectorRootSpace& v1, const VectorRootSpace& v2);
 VectorRootSpace operator*(const VectorRootSpace& v1, const rational r);
 VectorRootSpace operator*(const rational r, const VectorRootSpace& v1);
 
+class Representation{
+public:
+    //constructors
+    Representation();
+    virtual ~Representation();
+    Representation(const Representation& rhs);
+    Representation& operator=(const Representation& rhs);
+    
+private:
+    struct Impl;
+    std::unique_ptr<Impl> pImpl;
+};
+
 
 }
