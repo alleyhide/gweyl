@@ -3,4 +3,4 @@
 # @author ALIKAWA Hidehisa <alleyhide@gmail.com>
 #
 
-add_library(Representation STATIC Representation.cpp)
+add_library(IrreducibleRepresentation STATIC IrreducibleRepresentation.cpp)

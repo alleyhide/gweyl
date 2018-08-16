@@ -47,8 +47,8 @@ target_link_libraries(PositiveRootsTest gweyl)
 #
 # test for class Representation
 #
-add_executable(RepresentationTest RepresentationTest.cpp)
-target_link_libraries(RepresentationTest gweyl)
+add_executable(IrreducibleRepresentationTest IrreducibleRepresentationTest.cpp)
+target_link_libraries(IrreducibleRepresentationTest gweyl)
 
 
 
@@ -73,8 +73,8 @@ set_tests_properties(testVectorRootSpace001 PROPERTIES FAIL_REGULAR_EXPRESSION "
 #
 # tests for Representation
 #
-add_test(testRepresentation001 RepresentationTest)
-set_tests_properties(testRepresentation001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+add_test(testIrreducibleRepresentation001 IrreducibleRepresentationTest)
+set_tests_properties(testIrreducibleRepresentation001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 #
 # test for CartanMatrix
