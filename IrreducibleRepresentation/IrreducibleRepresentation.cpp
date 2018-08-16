@@ -15,62 +15,62 @@
 
 namespace gweyl{
 
-struct Representation::Impl {
+struct IrreducibleRepresentation::Impl {
     VectorRootSpace highestweight_;
 };
 
-Representation::Representation(): pImpl(std::make_unique<Impl>()){
+IrreducibleRepresentation::IrreducibleRepresentation(): pImpl(std::make_unique<Impl>()){
 }
 
-Representation::Representation(const Representation &rhs): pImpl(std::make_unique<Impl>()){
+IrreducibleRepresentation::IrreducibleRepresentation(const IrreducibleRepresentation &rhs): pImpl(std::make_unique<Impl>()){
     pImpl->highestweight_ = rhs.highestweight();
 }
 
-Representation::Representation(VectorRootSpace& hw): pImpl(std::make_unique<Impl>()){
+IrreducibleRepresentation::IrreducibleRepresentation(VectorRootSpace& hw): pImpl(std::make_unique<Impl>()){
     pImpl->highestweight_ = hw;
 }
 
-Representation& Representation::operator=(const Representation& rhs){
+IrreducibleRepresentation& IrreducibleRepresentation::operator=(const IrreducibleRepresentation& rhs){
     pImpl->highestweight_ = rhs.highestweight();
     return *this;
 }
 
-Representation::~Representation(){
+IrreducibleRepresentation::~IrreducibleRepresentation(){
 }
 
-Type Representation::type(){
+Type IrreducibleRepresentation::type(){
     return pImpl->highestweight_.type();
 }
 
-Type Representation::type() const{
+Type IrreducibleRepresentation::type() const{
     return pImpl->highestweight_.type();
 }
 
-unsigned Representation::rank(){
+unsigned IrreducibleRepresentation::rank(){
     return pImpl->highestweight_.rank();
 }
 
-unsigned Representation::rank() const{
+unsigned IrreducibleRepresentation::rank() const{
     return pImpl->highestweight_.rank();
 }
 
-VectorRootSpace Representation::highestweight(){
+VectorRootSpace IrreducibleRepresentation::highestweight(){
     return pImpl->highestweight_;
 }
 
-VectorRootSpace Representation::highestweight() const{
+VectorRootSpace IrreducibleRepresentation::highestweight() const{
     return pImpl->highestweight_;
 }
 
-bool Representation::operator==(const Representation& rhs){
+bool IrreducibleRepresentation::operator==(const IrreducibleRepresentation& rhs){
     return (pImpl->highestweight_ == rhs.highestweight());
 }
 
-bool Representation::operator!=(const Representation& rhs){
+bool IrreducibleRepresentation::operator!=(const IrreducibleRepresentation& rhs){
     return (pImpl->highestweight_ != rhs.highestweight());
 }
 
-int Representation::dimension(){
+int IrreducibleRepresentation::dimension(){
     // implement
     return 0;
 }

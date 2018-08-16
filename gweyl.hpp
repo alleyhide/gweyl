@@ -199,16 +199,16 @@ VectorRootSpace operator*(const VectorRootSpace& v1, const rational r);
 VectorRootSpace operator*(const rational r, const VectorRootSpace& v1);
 
 //
-// class Representation
-//
-class Representation{
+// class IrreducibleRepresentation
+// 
+class IrreducibleRepresentation{
 public:
     //constructors
-    Representation();
-    explicit Representation(VectorRootSpace& highestweight);
-    virtual ~Representation();
-    Representation(const Representation& rhs);
-    Representation& operator=(const Representation& rhs);
+    IrreducibleRepresentation();
+    explicit IrreducibleRepresentation(VectorRootSpace& highestweight);
+    virtual ~IrreducibleRepresentation();
+    IrreducibleRepresentation(const IrreducibleRepresentation& rhs);
+    IrreducibleRepresentation& operator=(const IrreducibleRepresentation& rhs);
 
     //getters
     Type type();
@@ -219,8 +219,8 @@ public:
     VectorRootSpace highestweight() const;
 
     //operators
-    bool operator==(const Representation& rhs);
-    bool operator!=(const Representation& rhs);
+    bool operator==(const IrreducibleRepresentation& rhs);
+    bool operator!=(const IrreducibleRepresentation& rhs);
 
     int dimension();
     
