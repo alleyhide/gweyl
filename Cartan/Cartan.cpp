@@ -218,6 +218,22 @@ VectorRootSpace Cartan::FundamentalWeight(unsigned i){
     return v;
 }
 
+VectorRootSpace Cartan::Zero(){
+    NumberVector nv(rank());
+    VectorRootSpace v(type(), nv, Coordinate::fundamental);
+    return v;
+}
+
+VectorRootSpace Cartan::Rho(){
+    NumberVector nv(rank());
+    for (rational &x: nv){
+        x = 1;
+    }
+    VectorRootSpace v(type(), nv, Coordinate::fundamental);
+
+    return v;
+}
+
 bool Cartan::operator==(const Cartan &rhs){
     return ((type() == rhs.type()) && (rank() == rhs.rank()));
 }

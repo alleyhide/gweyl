@@ -38,11 +38,11 @@ add_subdirectory(Trace)
 
 # dependencies
 target_link_libraries(VectorRootSpace INTERFACE NumberVector)
-
+target_link_libraries(IrreducibleRepresentation INTERFACE VectorRootSpace Cartan CartanMatrix)
 
 add_library(gweyl SHARED "")
 
-target_link_libraries (gweyl NumberVector Cartan CartanMatrix Trace VectorRootSpace)
+target_link_libraries (gweyl NumberVector Cartan CartanMatrix Trace VectorRootSpace IrreducibleRepresentation)
 
 install (TARGETS gweyl LIBRARY DESTINATION lib)
 install (FILES "gweyl.hpp" DESTINATION include)

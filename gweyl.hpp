@@ -108,7 +108,12 @@ public:
     VectorRootSpace HighestRoot();
 
     //
-    // @return half sum of positive roots <not implemented>
+    // @return zero vector
+    //
+    VectorRootSpace Zero();
+    
+    //
+    // @return half sum of positive roots
     //
     VectorRootSpace Rho();
 

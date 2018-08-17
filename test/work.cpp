@@ -8,18 +8,17 @@ int main(int argc, char** argv){
     std::cout << "Hello gweyl!" << std::endl;
     
     try {
-        //gweyl::NumberVector nv(2);
-        //nv(1) = 1;
-        std::vector<std::vector<gweyl::rational> > vv{{1,0}, {0,1}, {1,1}};
+        gweyl::Type t = gweyl::Type::A;
+        unsigned n = 4;
 
-        for (std::vector<gweyl::rational>& x : vv){
-            
-            gweyl::NumberVector nv(x.size());
-            std::copy(x.begin(), x.end(), nv.begin());
-            //std::cout << "nv " << nv;
-            gweyl::VectorRootSpace v(gweyl::Type::G, nv, gweyl::Coordinate::simple);
-            v.printf();
-        }
+        gweyl::NumberVector nv1(n);
+        nv1(0)=1;
+        gweyl::VectorRootSpace v1(t, nv1, gweyl::Coordinate::fundamental);
+        gweyl::IrreducibleRepresentation rep1(v1);
+        
+        int dim = rep1.dimension();
+
+        std::cout << "dimension " << std::to_string(dim) << std::endl;
         
 
 

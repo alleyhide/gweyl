@@ -27,6 +27,11 @@ IrreducibleRepresentation::IrreducibleRepresentation(const IrreducibleRepresenta
 }
 
 IrreducibleRepresentation::IrreducibleRepresentation(VectorRootSpace& hw): pImpl(std::make_unique<Impl>()){
+    if (!hw.isDominantIntegral()){
+        std::string msg{"Irreducible representation error: highest weight must be dominant integral. "};
+        std::runtime_error e(msg);
+        throw e;
+    }
     pImpl->highestweight_ = hw;
 }
 
@@ -71,8 +76,31 @@ bool IrreducibleRepresentation::operator!=(const IrreducibleRepresentation& rhs)
 }
 
 int IrreducibleRepresentation::dimension(){
-    // implement
-    return 0;
+    RootSpace RS(type(), rank());
+
+    std::vector<VectorRootSpace> proots = RS.PositiveRoots();
+    VectorRootSpace rho = RS.Rho();
+    VectorRootSpace hw_rho = pImpl->highestweight_ + rho;
+    
+    // dimension formula
+ 
+    rational numerator = 1;
+    rational denominator = 1;
+    for (VectorRootSpace& x: proots){
+        numerator *= InnerProduct(hw_rho, x);
+        denominator *= InnerProduct(rho, x);
+    }
+    rational dim =numerator / denominator;
+
+    if (dim.denominator() != 1){
+        std::string msg{"Dimension formula error. The dimesion does not become integer."};
+        std::runtime_error e(msg);
+        throw e;
+    }
+    
+    int dim_int = dim.numerator();
+    
+    return dim_int;
 }
 
 }

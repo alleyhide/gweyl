@@ -45,6 +45,12 @@ add_executable(PositiveRootsTest PositiveRootsTest.cpp)
 target_link_libraries(PositiveRootsTest gweyl)
 
 #
+# test for Rho
+#
+add_executable(RhoTest RhoTest.cpp)
+target_link_libraries(RhoTest gweyl)
+
+#
 # test for class Representation
 #
 add_executable(IrreducibleRepresentationTest IrreducibleRepresentationTest.cpp)
@@ -71,10 +77,21 @@ add_test(testVectorRootSpace001 VectorRootSpaceTest)
 set_tests_properties(testVectorRootSpace001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
 
 #
+# tests for Rho in root space
+#
+add_test(testRho001 RhoTest)
+set_tests_properties(testRho001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+
+#
 # tests for Representation
 #
 add_test(testIrreducibleRepresentation001 IrreducibleRepresentationTest)
 set_tests_properties(testIrreducibleRepresentation001 PROPERTIES FAIL_REGULAR_EXPRESSION "Error")
+
+
+
+
+
 
 #
 # test for CartanMatrix
