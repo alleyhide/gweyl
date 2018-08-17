@@ -107,7 +107,28 @@ int main(int argc, char** argv){
         ;
     }
         
+    //dimension
+    try {
+        gweyl::NumberVector nv1(4);
+        nv1(0)=1; nv1(1)=0; nv1(2)=0; nv1(3)=0;
+        gweyl::VectorRootSpace v1(gweyl::Type::A, nv1, gweyl::Coordinate::fundamental);
+        gweyl::IrreducibleRepresentation rep1(v1);
 
+        int dim = rep1.dimension();
+
+        if (dim == 5){
+            ;
+        }else {
+            std::string msg("dimension A 4 pi_1 ");
+            std::runtime_error e(msg);
+            throw e;
+        }
+    }catch (std::exception &e){
+        std::cout << "Error\n what(): ";
+        std::cout << e.what();
+        std::cout << std::endl;
+        return -1;
+    }
 
     return 0;
 }

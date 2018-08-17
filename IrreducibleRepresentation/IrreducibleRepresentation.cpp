@@ -82,7 +82,7 @@ int IrreducibleRepresentation::dimension(){
     VectorRootSpace rho = RS.Rho();
     VectorRootSpace hw_rho = pImpl->highestweight_ + rho;
     
-    // dimension formula
+    // Weyl dimension formula
  
     rational numerator = 1;
     rational denominator = 1;
@@ -94,6 +94,9 @@ int IrreducibleRepresentation::dimension(){
 
     if (dim.denominator() != 1){
         std::string msg{"Dimension formula error. The dimesion does not become integer."};
+        msg += std::to_string(dim.numerator());
+        msg += "/";
+        msg += std::to_string(dim.denominator());
         std::runtime_error e(msg);
         throw e;
     }

@@ -8,8 +8,8 @@ int main(int argc, char** argv){
     std::cout << "Hello gweyl!" << std::endl;
     
     try {
-        gweyl::Type t = gweyl::Type::A;
-        unsigned n = 4;
+        gweyl::Type t = gweyl::Type::E;
+        unsigned n = 6;
 
         gweyl::NumberVector nv1(n);
         nv1(0)=1;
