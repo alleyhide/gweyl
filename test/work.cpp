@@ -3,22 +3,48 @@
 
 #include "gweyl.hpp"
 
+using namespace gweyl;
+
+struct RepData {
+    IrreducibleRepresentation rep;
+    bool calculated{false};
+    std::vector<matrix> PositiveSingleRootVectorAction;
+    std::vector<matrix> NegativeSingleRootVectorAction;
+};
+
+std::vector<RepData> g_Data;
+
+
+class Representation {
+public:
+    Representation(){
+    }
+    ~Representation(){
+    }
+
+    Representation(VectorRootSpace& hw){
+        IrreducibleRepresentation rep(hw);
+        rep_ = rep;
+    }
+
+    
+    
+private:
+    IrreducibleRepresentation rep_;
+    
+    bool calculated{false};
+    std::vector<matrix> PositiveSingleRootVectorAction;
+    std::vector<matrix> NegativeSingleRootVectorAction;
+};
+
+
+
+
 int main(int argc, char** argv){
 
     std::cout << "Hello gweyl!" << std::endl;
     
     try {
-        gweyl::Type t = gweyl::Type::E;
-        unsigned n = 6;
-
-        gweyl::NumberVector nv1(n);
-        nv1(0)=1;
-        gweyl::VectorRootSpace v1(t, nv1, gweyl::Coordinate::fundamental);
-        gweyl::IrreducibleRepresentation rep1(v1);
-        
-        int dim = rep1.dimension();
-
-        std::cout << "dimension " << std::to_string(dim) << std::endl;
         
 
 

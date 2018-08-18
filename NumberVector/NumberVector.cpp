@@ -8,7 +8,6 @@
  * 
  */
 #include "gweyl.hpp"
-#include "gweyl_private.hpp"
 
 namespace gweyl{
 

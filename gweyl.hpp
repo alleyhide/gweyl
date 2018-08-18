@@ -66,6 +66,14 @@ enum class Coordinate {
 //
 void trace(std::string& msg);
 
+///
+/// The definition of Cartan Matrix is equivalent to
+/// the definition of the root space, according to structure theory of Lie algebra,
+/// that is, Cartan matrix is the source of "gweyl"
+///
+matrix CartanMatrix(Type X, unsigned n);
+matrix InverseCartanMatrix(Type X, unsigned n);
+
 class VectorRootSpace;
 
 //
