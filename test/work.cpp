@@ -5,37 +5,14 @@
 
 using namespace gweyl;
 
-struct RepData {
+struct RepresentationTheory {
     IrreducibleRepresentation rep;
-    bool calculated{false};
     std::vector<matrix> PositiveSingleRootVectorAction;
     std::vector<matrix> NegativeSingleRootVectorAction;
-};
-
-std::vector<RepData> g_Data;
-
-
-class Representation {
-public:
-    Representation(){
-    }
-    ~Representation(){
-    }
-
-    Representation(VectorRootSpace& hw){
-        IrreducibleRepresentation rep(hw);
-        rep_ = rep;
-    }
-
-    
-    
-private:
-    IrreducibleRepresentation rep_;
-    
     bool calculated{false};
-    std::vector<matrix> PositiveSingleRootVectorAction;
-    std::vector<matrix> NegativeSingleRootVectorAction;
 };
+
+std::vector<RepresentationTheory> g_RepresentationTheory_A1;
 
 
 
@@ -45,8 +22,29 @@ int main(int argc, char** argv){
     std::cout << "Hello gweyl!" << std::endl;
     
     try {
-        
+        // L(pi_1)
+        NumberVector nv1(1);
+        nv1(0) = 1;
+        VectorRootSpace v1(Type::A, nv1, Coordinate::fundamental);
+        IrreducibleRepresentation rep1(v1);
 
+        int m = rep1.dimension();
+        std::cout << "A1 pi_1 dimension " << std::to_string(m) << std::endl;
+        
+        RepresentationTheory repth1;
+        repth1.rep = rep1;
+
+        matrix E1p(m,m);
+        E1p(0,1) = 1;
+        repth1.PositiveSingleRootVectorAction.push_back(E1p);
+        
+        matrix E1m(m,m);
+        E1p(1,0) = 1;
+        repth1.NegativeSingleRootVectorAction.push_back(E1m);
+
+        repth1.calculated = true;
+
+        g_RepresentationTheory_A1.push_back(repth1);
 
     }catch (std::exception &e){
         std::cout << "Error\n what(): ";
