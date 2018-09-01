@@ -13,14 +13,6 @@ set(CMAKE_BUILD_TYPE Debug)
 # gweyl
 project (gweyl)
 
-# version of gweyl
-set (gweyl_VERSION_MAJOR 0)
-set (gweyl_VERSION_MINOR 1)
-
-configure_file (
-  "${PROJECT_SOURCE_DIR}/gweylConfig.h.in"
-  "${PROJECT_BINARY_DIR}/gweylConfig.h"
-  )
 include_directories("${PROJECT_BINARY_DIR}")
 
 
