@@ -5,7 +5,7 @@
  * 
  * @brief  trace utility of gweyl
  * 
- * 
+ * Released under the MIT license
  */
 
 #include "gweyl.hpp"

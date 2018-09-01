@@ -5,7 +5,7 @@
  * 
  * @brief  class Representation
  * 
- * 
+ * Released under the MIT license
  */
 #include <map>
 #include <memory>

@@ -5,7 +5,7 @@
  * 
  * @brief  CartanMatrix
  * 
- * 
+ * Released under the MIT license
  */
 
 #include <map>

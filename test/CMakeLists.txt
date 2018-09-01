@@ -1,6 +1,8 @@
 #
 # @file CMakeLists.txt for gweyl test
 # @author ALIKAWA Hidehisa <alleyhide@gmail.com>
+# @date   2018/04/30
+# Released under the MIT license
 #
 
 

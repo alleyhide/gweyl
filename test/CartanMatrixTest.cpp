@@ -1,3 +1,14 @@
+/**
+ * @file   CartanMatrixTest.cpp
+ * @author ALIKAWA Hidehisa <alleyhide@gmail.com>
+ * @date   2018/09/01
+ 
+ * 
+ * @brief  for the tests of Cartan matrix
+ * 
+ * Released under the MIT license
+ */
+
 #include <iostream>
 #include <boost/numeric/ublas/io.hpp>
 

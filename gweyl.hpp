@@ -5,7 +5,7 @@
  * 
  * @brief  public header file of gweyl
  * 
- * 
+ * Released under the MIT license
  */
 #pragma once
 

@@ -5,7 +5,7 @@
  * 
  * @brief  Positive Roots
  * 
- * 
+ * Released under the MIT license
  */
 
 #include <map>

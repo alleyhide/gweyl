@@ -5,7 +5,7 @@
  * 
  * @brief  for NumberVector or matrix
  * 
- * 
+ * Released under the MIT license
  */
 #include "gweyl.hpp"
 

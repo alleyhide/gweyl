@@ -5,7 +5,7 @@
  * 
  * @brief  class Vector
  * 
- * 
+ * Released under the MIT lisence
  */
 #include <iostream>
 #include <boost/numeric/ublas/io.hpp>

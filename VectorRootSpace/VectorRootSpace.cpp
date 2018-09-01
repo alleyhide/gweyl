@@ -5,7 +5,7 @@
  * 
  * @brief  class VectorRootSpace
  * 
- * 
+ * Released under the MIT license
  */
 
 #include "gweyl.hpp"

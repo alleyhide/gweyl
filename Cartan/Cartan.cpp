@@ -5,7 +5,7 @@
  * 
  * @brief  class Cartan
  * 
- * 
+ * Released under the MIT license
  */
 #include <map>
 #include <memory>

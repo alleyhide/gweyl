@@ -5,7 +5,7 @@
  * 
  * @brief  inner product of root space
  * 
- * 
+ * Released under the MIT license
  */
 
 #include <map>

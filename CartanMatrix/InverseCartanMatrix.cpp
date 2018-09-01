@@ -5,7 +5,7 @@
  * 
  * @brief  inverse matrix of CartanMatrix
  * 
- * 
+ * Released under the MIT license
  */
 
 #include <map>
