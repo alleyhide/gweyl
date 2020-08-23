@@ -1,0 +1,112 @@
+\documentclass[fleqn]{jsarticle}
+\usepackage{amsmath}
+\usepackage{newtxtext,newtxmath}
+\usepackage{theorem}
+\theorembodyfont{\normalfont}
+\newtheorem{theorem}{定理}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{problem}{問題}
+%\def\languagename{hoge}
+%\setbeamertemplate{theorems}[numbered]
+\begin{document}
+
+\title{ブログテスト}
+\author{佐々 野寄}
+\date{2020年8月15日始 \\ \today}
+\maketitle
+
+\section{20200815}
+
+hello こんにちはああああ
+さっきまで 入力できますか
+gedit aaa aaaaaa
+
+
+はっきり言って日本語入力するだけで、一時間くらいかかった。。。。
+まずはtexをちゃんと打てるようになる環境を準備するかな
+
+texliveをインストールしてみる
+
+ptex2pdf -l tmp.tex
+で最近はいいらし
+スクリプト使う必要なし
+
+\subsection{latexの設定}
+
+texを使えるようになるまで一日かかるとか、ありえないよ。
+
+texstudioをインストールして、
+Option $\to$ Configure Texstudio
+で、Latexを
+$
+ptex2pdf -l　\%.tex
+$
+にする。
+
+\subsection{アイデア}
+\begin{itemize}
+\item 恒等式から
+\item 三角関数の加法定理の証明
+\item $\pi > 3.05$とか
+\end{itemize}
+
+
+\section{20200822}
+
+「数学は思想である」という主張は、数学の理論は長大な理論であり深謀遠慮が
+垣間見えるほど深淵は思想ようだ、という意味ではない。
+「数学は思想である」というのは言葉そのままである。「思想」を「考え方」
+に変えるともっとよいだろうか。「数学は考え方である」。「数学」とは
+何かを考えた考え方だ。これを分かるようにエッセーを書いていきたい。
+
+学校数学から「数学は考え方」という発想にはなりにくいのかもしれない。
+だから、このエッセーは価値を持ち始める可能性を持っている。
+いや、そう信じる、信じたい。
+
+私の数学人生は、もう一度再生させる。
+もう、新しい定理をやる必要はない、
+みんなが知っていることをつらつら書いても
+誰も怒る人などいないんだ。
+
+
+
+\section[恒等式]{恒等式の問題}
+
+教科書に載っている何でもない問題から
+何か考えられないかなぁ、というところです。
+
+\subsection[問題]{問題提議}
+
+まずは、問題を書いてみましょう。
+
+\begin{problem}
+\begin{equation}\label{eq:idmon}
+x^3=a(x-1)^3+b(x-1)^2+c(x-1)+d
+\end{equation}
+が$x$に関する恒等式となるように定数$a,b,c,d$を求めよ。
+\end{problem}
+
+\subsection[定義]{恒等式の定義}
+
+\subsection[係数比較]{係数比較法}
+
+
+\section[加法定理]{三角関数の加法定理}
+
+\subsection[教科書の方法]{教科書の証明方法}
+
+\subsection[回転の行列]{回転の行列を使う方法}
+
+\subsection[複素平面]{複素平面の回転移動}
+
+\subsection[オイラーの公式]{オイラーの公式を用いる方法}
+
+\subsection[テイラー級数]{オイラーの公式を正当化}
+
+\subsection[微分方程式]{微分方程式による特徴付け}
+
+
+\section[行列式の特徴付け]{行列式の特徴付け}
+
+
+\end{document}
